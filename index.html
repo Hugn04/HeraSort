@@ -67,6 +67,14 @@
           loop
           playsinline
         ></video>
+        <!-- <video
+          class="hero-video"
+          src="./public/assets/videos/hera_mb.webm"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video> -->
         <div class="hero-title title-display" id="hero-title">
           <span class="hero-title__group">
             <span class="gradient-title">Tựa núi</span>
@@ -115,11 +123,25 @@
         </div>
       </section>
       <div class="background-2-section">
-        <img
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/background-tuyet-tac-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/background-tuyet-tac.webp"
+            alt=""
+            class="background-tuyet-tac"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <!-- <img
           src="./public/homepage/background-tuyet-tac.webp"
           class="background-tuyet-tac"
           alt=""
-        />
+        /> -->
       </div>
       <section class="section santorini" aria-labelledby="santorini-title">
         <div class="santorini-copy">
@@ -140,21 +162,36 @@
         </div>
       </section>
       <div class="background-2-section">
-        <img
+        <!-- <img
           src="./public/homepage/color_layer.webp"
           class="background-color-layer"
           alt=""
-        />
+        /> -->
+        <div class="background-color-layer"></div>
         <img
           src="./public/homepage/hera-resort.webp"
           alt=""
           class="logo-text"
         />
-        <img
+        <!-- <img
           src="./public/homepage/section_21.webp"
           class="background-the-hera"
           alt=""
-        />
+        /> -->
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/background-the-hera-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/section_21.webp"
+            alt=""
+            class="background-the-hera"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
       <section class="section blue project" aria-labelledby="project-title">
         <!-- <div class="logo-text">The</div> -->
