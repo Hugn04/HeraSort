@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "SVN-Butler";
+  src: url("../fonts/SVN-Butler Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVN-Butler";
+  src: url("../fonts/SVN-Butler Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVN-Butler";
+  src: url("../fonts/SVN-Butler ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVN-Butler";
+  src: url("../fonts/SVN-Butler Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVN-Aptima";
+  src: url("../fonts/SVN-APTIMA.TTF") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVN-Aptima";
+  src: url("../fonts/SVN-APTIMA ITALIC.TTF") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVN-Aptima";
+  src: url("../fonts/SVN-APTIMA BOLD.TTF") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SVN-Aptima";
+  src: url("../fonts/SVN-APTIMA BOLD ITALIC.TTF") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+html {
+  font-size: 1vw;
+}
+@media screen and (max-width: 639px) {
+  html {
+    font-size: 4.266667vw;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #13355a;
+  color: #ffffff;
+  font-family: "SVN-Aptima", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
