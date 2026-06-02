@@ -279,7 +279,7 @@ section {
       rgba(19, 53, 90, 0.76),
       rgba(19, 53, 90, 0.3)
     ),
-    url("../public/homepage/hero-say.webp") center / cover;
+    url("./public/homepage/hero-say.webp") center / cover;
   mix-blend-mode: overlay;
   opacity: 0.78;
 }
@@ -876,7 +876,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../public/homepage/gallery-thumb-1.webp") center / cover;
+  background: url("./public/homepage/gallery-thumb-1.webp") center / cover;
   opacity: 0.36;
   mix-blend-mode: overlay;
 }
