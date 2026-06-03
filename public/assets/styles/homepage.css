@@ -2,6 +2,50 @@
    Cleaned & grouped by sections.
 */
 
+.button-navigation {
+  pointer-events: all;
+  display: flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 1.125rem;
+  border: 1px solid #a1dcf4;
+  transition: all ease 0.3s;
+  padding: 0;
+  background: #a1dcf4;
+  color: #fff;
+}
+
+@media (min-width: 640px) {
+  .button-navigation:hover {
+    opacity: 0.8;
+  }
+}
+.button-navigation.swiper-button-disabled {
+  color: #a1dcf4;
+  background: transparent;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.button-navigation svg {
+  height: 0.875rem;
+}
+.gallery-navigation-wrapper {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  justify-content: space-between;
+  width: 103%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.gallery-swiper-wrapper {
+  position: relative;
+}
 /* ==================================================
    01. Base / Layout chung
    ================================================== */
@@ -48,11 +92,14 @@ section {
   letter-spacing: 0;
 }
 .title-xl {
+  position: relative;
   font-family: "SVN-Butler", serif;
   font-size: 4.25rem;
+  font-style: normal;
   font-weight: 300;
-  line-height: 3.145rem;
-  letter-spacing: 0;
+  line-height: 74%; /* 3.145rem */
+  letter-spacing: -0.085rem;
+  z-index: 3;
 }
 .title-lg {
   font-family: "SVN-Butler", serif;
@@ -99,13 +146,15 @@ section {
   justify-content: center;
   margin-top: 1rem;
 }
-.dots span {
+.dots span,
+.dots .swiper-pagination-bullet {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
   border: 0.0625rem solid #a1dcf4;
 }
-.dots span:first-child {
+
+.dots .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #a1dcf4;
 }
 
@@ -261,6 +310,8 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  text-shadow: 0 0 22.379px rgba(255, 255, 255, 0.4);
+  font-family: SVN-Butler;
 }
 .hero-title__group {
   position: relative;
@@ -589,6 +640,7 @@ section {
   font-size: 1.5rem;
   line-height: 1.8rem;
 }
+
 .quote-copy .title-xl {
   margin: 0;
   line-height: 4.25rem;
@@ -613,6 +665,7 @@ section {
   margin: 0 0 3.9375rem;
 }
 .arrow-row {
+  pointer-events: none;
   display: flex;
   gap: 1rem;
 }
@@ -804,6 +857,8 @@ section {
 }
 .swiper-gallery-thumps {
   width: 100%;
+  grid-column: 1 / -1;
+  grid-row: 3;
 }
 .gallery-filter {
   position: relative;
@@ -1155,6 +1210,15 @@ section {
 }
 
 @media (max-width: 639.98px) {
+  .hero-title__group:last-child {
+    margin-top: -1.05rem;
+  }
+  .location-copy .title-xl::first-letter {
+    text-transform: uppercase;
+  }
+  .location-copy .title-xl br {
+    display: none;
+  }
   .peacock {
     width: 32.01719rem;
     height: 16.76531rem;
@@ -1208,12 +1272,17 @@ section {
   .background-tuyet-tac {
     top: 0;
   }
-
+  .arrow-row {
+    top: 18.23rem;
+    position: absolute;
+    width: 100%;
+    justify-content: space-between;
+    z-index: 2;
+  }
   /* ==================================================
      04. Header
      ================================================== */
   .site-header,
-  .arrow-row,
   .partners,
   .footer,
   .news-date {
@@ -1239,7 +1308,19 @@ section {
     display: block;
     text-align: center;
     font-size: 2.375rem;
-    line-height: 3.6329rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 3.63294rem; /* 152.965% */
+    letter-spacing: -0.16625rem;
+    background: linear-gradient(
+      180deg,
+      #fff 7.12%,
+      rgba(255, 255, 255, 0) 137.23%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    mix-blend-mode: plus-lighter;
   }
   .hero-title__group {
     position: static;
@@ -1322,7 +1403,8 @@ section {
     width: auto;
   }
   .stacked-title {
-    width: 100%;
+    width: 18.03956rem;
+    text-align: left;
     height: auto;
     margin-bottom: 0.625rem;
     font-size: 3.25rem;
@@ -1334,6 +1416,10 @@ section {
   .stacked-title span:nth-child(3) {
     position: static;
     display: block;
+  }
+  .stacked-title span:nth-child(2) {
+    margin-top: -1.11rem;
+    margin-left: 5.9rem;
   }
   .stacked-title span:nth-child(3) {
     font-size: 2.125rem;
@@ -1359,11 +1445,15 @@ section {
     width: auto;
   }
   .project-title {
-    width: 100%;
+    width: 18.41rem;
     height: auto;
     margin-bottom: 0.75rem;
     font-size: 3.25rem;
-    line-height: 3.901rem;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 3.90088rem; /* 120.027% */
+    letter-spacing: -0.2275rem;
+    text-align: left;
   }
   .project-title span,
   .project-title span:first-child,
@@ -1372,9 +1462,17 @@ section {
     position: static;
     display: block;
   }
+  .project-title span:nth-child(2) {
+    margin-top: -1.02rem;
+    margin-left: 5.98rem;
+  }
   .project-title small {
-    font-size: 2.125rem;
-    line-height: 2.2869rem;
+    text-align: center;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.39194rem; /* 111.355% */
+    letter-spacing: -0.0625rem;
   }
   .project-facts {
     font-size: 0.875rem;

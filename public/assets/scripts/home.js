@@ -1,10 +1,10 @@
 window.addEventListener("load", () => {
   const isMobile = window.matchMedia("(max-width: 639px)").matches;
+  initGallerySwiper();
   if (isMobile) return;
 
   initProjectAnimation();
   initPeacockAnimation();
-  initGallerySwiper();
 });
 
 function initProjectAnimation() {
@@ -70,11 +70,12 @@ function initGallerySwiper() {
   });
 
   new Swiper(mainEl, {
-    spaceBetween: 10,
+    // spaceBetween: 10,
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: ".gallery-button-next",
+      prevEl: ".gallery-button-prev",
     },
+
     thumbs: {
       swiper: thumbsSwiper,
     },
