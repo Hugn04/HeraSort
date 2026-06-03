@@ -61,8 +61,6 @@
             src="./public/homepage/background.webp"
             alt=""
             class="background"
-            loading="lazy"
-            decoding="async"
           />
         </picture>
         <video
@@ -267,9 +265,9 @@
         <div class="location-copy">
           <h2 class="location-head" id="location-title">
             <span class="subtitle">Tọa độ độc bản</span>
-            <span class="title-xl">giữa núi rừng<br />nguyên sơ</span>
+            <span class="title-xl">giữa núi rừng <br />nguyên sơ</span>
             <span class="title-xl">&amp;</span>
-            <span class="title-xl">Vịnh Tiên<br />Quy Nhơn</span>
+            <span class="title-xl">Vịnh Tiên <br />Quy Nhơn</span>
           </h2>
           <div class="distance-list">
             <article class="distance-item">
@@ -383,14 +381,37 @@
             Vạn trải nghiệm giữa <br />núi rừng và vịnh biển
           </p>
           <div class="arrow-row">
-            <button
-              class="nav-button amenities-prev"
-              aria-label="Previous amenity"
-            >
-              ‹
+            <button class="amenities-prev button-navigation">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="8"
+                height="15"
+                viewBox="0 0 8 15"
+                fill="none"
+              >
+                <path
+                  d="M7.5 0.5L0.5 7.5L7.5 14.5"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </button>
-            <button class="nav-button amenities-next" aria-label="Next amenity">
-              ›
+            <button class="amenities-next button-navigation">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="8"
+                height="15"
+                viewBox="0 0 8 15"
+                fill="none"
+              >
+                <path
+                  d="M0.5 0.5L7.5 7.5L0.5 14.5"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -527,9 +548,7 @@
               </div>
             </article>
           </div>
-          <div class="dots" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
+          <div class="investment-pagination dots"></div>
         </div>
       </section>
 
@@ -558,29 +577,63 @@
           alt=""
         /> -->
         <div class="gallery-wrap">
-          <div class="swiper-gallery-main swiper gallery-main">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img
-                  src="./public/homepage/gallery-main.webp"
-                  alt="Không gian dự án The Hera Resort"
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="./public/homepage/gallery-main.webp"
-                  alt="Không gian dự án The Hera Resort"
-                />
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="./public/homepage/gallery-main.webp"
-                  alt="Không gian dự án The Hera Resort"
-                />
+          <div class="gallery-swiper-wrapper">
+            <div class="swiper-gallery-main swiper gallery-main">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img
+                    src="./public/homepage/gallery-main.webp"
+                    alt="Không gian dự án The Hera Resort"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="./public/homepage/gallery-main.webp"
+                    alt="Không gian dự án The Hera Resort"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="./public/homepage/gallery-main.webp"
+                    alt="Không gian dự án The Hera Resort"
+                  />
+                </div>
               </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="gallery-navigation-wrapper">
+              <button class="gallery-button-prev button-navigation">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="8"
+                  height="15"
+                  viewBox="0 0 8 15"
+                  fill="none"
+                >
+                  <path
+                    d="M7.5 0.5L0.5 7.5L7.5 14.5"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button class="gallery-button-next button-navigation">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="8"
+                  height="15"
+                  viewBox="0 0 8 15"
+                  fill="none"
+                >
+                  <path
+                    d="M0.5 0.5L7.5 7.5L0.5 14.5"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
           <div class="gallery-thumbs">
             <div class="gallery-filter">
@@ -885,7 +938,7 @@
 
           breakpoints: {
             0: {
-              slidesPerView: 1.2,
+              slidesPerView: 1.1,
               // centeredSlides: true,
             },
             640: {
@@ -901,6 +954,9 @@
           centeredSlides: true,
           loop: false,
           speed: 600,
+          pagination: {
+            el: ".investment-pagination",
+          },
           slideToClickedSlide: true,
           breakpoints: {
             0: {
