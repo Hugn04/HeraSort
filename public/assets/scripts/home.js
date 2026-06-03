@@ -5,16 +5,24 @@
 document.addEventListener("DOMContentLoaded", initHeroTitleAnimation);
 
 window.addEventListener("load", () => {
-  const isMobile = window.matchMedia("(max-width: 639px)").matches;
+  // Swipers/filters run on every viewport.
   initGallerySwiper();
   initGalleryFilter();
-  if (isMobile) return;
 
-  initProjectAnimation();
-  initPeacockAnimation();
-  initScrollReveals();
-  initLocationGlow();
-  initBirdAnimation();
+  // Desktop-only scroll choreography. Using gsap.matchMedia (instead of a
+  // one-time `isMobile` check) is important: GSAP automatically REVERTS every
+  // animation and inline style these set when the viewport drops below 640px,
+  // and re-runs them when it grows back. A plain check left sections stuck in
+  // their `from` (hidden) state after a desktop→mobile resize — e.g. the
+  // investment swiper, faded to autoAlpha:0, never reappeared on mobile.
+  if (!window.gsap || !gsap.matchMedia) return;
+  gsap.matchMedia().add("(min-width: 640px)", () => {
+    initProjectAnimation();
+    initPeacockAnimation();
+    initScrollReveals();
+    initLocationGlow();
+    initBirdAnimation();
+  });
 });
 
 function initHeroTitleAnimation() {
@@ -177,7 +185,8 @@ function initScrollReveals() {
   //    so the masterplan feels approached by boat and settles there (no zoom
   //    back). Auto-plays (not scroll-linked) so it is visible on the landing
   //    view. Scale both the video and its fallback image; the title stays put.
-  const heroMedia = document.querySelectorAll(".hero-video, .hero .background");
+  // const heroMedia = document.querySelectorAll(".hero-video, .hero .background");
+  const heroMedia = document.querySelectorAll(".hero .background");
   if (heroMedia.length) {
     gsap.fromTo(
       heroMedia,
@@ -276,6 +285,10 @@ function initLocationGlow() {
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
+
+  // Avoid stacking duplicate overlays if this re-runs (e.g. matchMedia
+  // re-enters the desktop branch after a resize back up from mobile).
+  location.querySelector(".location-pulse")?.remove();
 
   // Build the sonar overlay on the project marker (CSS positions it there).
   const pulse = document.createElement("div");

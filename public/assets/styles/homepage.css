@@ -332,6 +332,52 @@ section {
   object-fit: contain;
 }
 
+/* --- Smart header: condensed frosted-glass state ---------------------------
+   Toggled (via the `.is-compact` class on `.header`) once the page is scrolled
+   past ~500px so the white nav stays readable over any content. CSS transitions
+   morph the bar smoothly; GSAP handles the slide-in/out (header.js). */
+.site-header {
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition:
+    top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    font-size 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.45s ease,
+    backdrop-filter 0.45s ease,
+    border-color 0.45s ease,
+    border-radius 0.45s ease,
+    box-shadow 0.45s ease;
+}
+.site-logo,
+.site-logo img {
+  transition:
+    height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header.is-compact .site-header {
+  top: 1rem;
+  height: 5rem;
+  padding: 0 1.75rem;
+  font-size: 0.9375rem;
+  background-color: rgba(9, 29, 52, 0.6);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(16px) saturate(135%);
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1.75rem;
+  box-shadow: 0 0.5rem 1.75rem rgba(0, 0, 0, 0.32);
+}
+.header.is-compact .site-logo {
+  height: 3.25rem;
+  width: auto;
+}
+.header.is-compact .site-logo img {
+  height: 3.25rem;
+  width: auto;
+  max-width: none;
+}
+
 /* ==================================================
    05. Hero
    ================================================== */
@@ -1464,7 +1510,6 @@ section {
     grid-template-columns: 1fr 1fr;
   }
   .header-mb {
-    background: #00000067;
     width: 100%;
     display: flex;
     padding: 0.875rem 1rem;
@@ -2005,7 +2050,7 @@ section {
     margin-right: 1.125rem;
   }
   .investment-pagination {
-    top: 25.5rem; /* just below the shorter mobile card (24.89rem) */
+    top: 26.5rem; /* just below the shorter mobile card (24.89rem) */
   }
 
   /* ==================================================
