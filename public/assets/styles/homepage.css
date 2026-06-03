@@ -332,6 +332,52 @@ section {
   object-fit: contain;
 }
 
+/* --- Smart header: condensed frosted-glass state ---------------------------
+   Toggled (via the `.is-compact` class on `.header`) once the page is scrolled
+   past ~500px so the white nav stays readable over any content. CSS transitions
+   morph the bar smoothly; GSAP handles the slide-in/out (header.js). */
+.site-header {
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition:
+    top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    font-size 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.45s ease,
+    backdrop-filter 0.45s ease,
+    border-color 0.45s ease,
+    border-radius 0.45s ease,
+    box-shadow 0.45s ease;
+}
+.site-logo,
+.site-logo img {
+  transition:
+    height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header.is-compact .site-header {
+  top: 1rem;
+  height: 5rem;
+  padding: 0 1.75rem;
+  font-size: 0.9375rem;
+  background-color: rgba(9, 29, 52, 0.6);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(16px) saturate(135%);
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1.75rem;
+  box-shadow: 0 0.5rem 1.75rem rgba(0, 0, 0, 0.32);
+}
+.header.is-compact .site-logo {
+  height: 3.25rem;
+  width: auto;
+}
+.header.is-compact .site-logo img {
+  height: 3.25rem;
+  width: auto;
+  max-width: none;
+}
+
 /* ==================================================
    05. Hero
    ================================================== */
@@ -574,7 +620,8 @@ section {
   top: 2rem;
   width: 56rem;
   height: 52rem;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 54% 61%,
       rgba(161, 220, 244, 0.24),
       rgba(19, 53, 90, 0) 54%
@@ -615,7 +662,8 @@ section {
   height: 0.625rem;
   margin: -0.3125rem 0 0 -0.3125rem;
   background: #e6f6ff;
-  box-shadow: 0 0 1.5rem 0.5rem rgba(161, 220, 244, 0.95),
+  box-shadow:
+    0 0 1.5rem 0.5rem rgba(161, 220, 244, 0.95),
     0 0 3.5rem 1.25rem rgba(161, 220, 244, 0.4);
 }
 .location-pulse__ring {
@@ -891,7 +939,7 @@ section {
   position: absolute;
   left: 0;
   right: 0;
-  top: 37.5rem;
+  top: 39.5rem;
   width: 100%;
   margin-top: 0;
   z-index: 4;
@@ -903,7 +951,10 @@ section {
   overflow: hidden;
   box-shadow: 0 0.3654rem 0.8953rem rgba(0, 0, 0, 0.9);
   border-radius: 50% / 35%;
-  transition: width 0.6s ease, height 0.6s ease, transform 0.6s ease;
+  transition:
+    width 0.6s ease,
+    height 0.6s ease,
+    transform 0.6s ease;
   flex-shrink: 0;
 }
 .investment-card.swiper-slide-active {
@@ -919,8 +970,8 @@ section {
 
 .investment-card.swiper-slide-active + .investment-card + .investment-card,
 .investment-card:has(
-    + .investment-card + .investment-card.swiper-slide-active
-  ) {
+  + .investment-card + .investment-card.swiper-slide-active
+) {
   transform: translateY(-6.375rem) scale(0.744);
   z-index: 1;
 }
@@ -1058,7 +1109,9 @@ section {
 }
 .gallery-filter li {
   cursor: pointer;
-  transition: opacity 0.3s ease, color 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
 }
 .gallery-filter li + li {
   margin-top: 0.5rem;
@@ -2000,7 +2053,7 @@ section {
     margin-right: 1.125rem;
   }
   .investment-pagination {
-    top: 25.5rem; /* just below the shorter mobile card (24.89rem) */
+    top: 26.5rem; /* just below the shorter mobile card (24.89rem) */
   }
 
   /* ==================================================
