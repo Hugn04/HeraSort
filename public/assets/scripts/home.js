@@ -16,14 +16,84 @@ window.addEventListener("load", () => {
   // their `from` (hidden) state after a desktop→mobile resize — e.g. the
   // investment swiper, faded to autoAlpha:0, never reappeared on mobile.
   if (!window.gsap || !gsap.matchMedia) return;
-  gsap.matchMedia().add("(min-width: 640px)", () => {
-    initProjectAnimation();
-    initPeacockAnimation();
-    initScrollReveals();
-    initLocationGlow();
-    initBirdAnimation();
-  });
+
+  // Smooth scroll first so ScrollTrigger is wired to Lenis before the
+  // scroll-driven animations below are created.
+  initSmoothScroll();
+
+  // gsap.matchMedia().add("(min-width: 640px)", () => {
+  initProjectAnimation();
+  initPeacockAnimation();
+  initScrollReveals();
+  initLocationGlow();
+  initBirdAnimation();
+  // });
 });
+
+// Momentum/eased smooth scroll (Lenis) — DESKTOP ONLY, and skipped for
+// reduced-motion users. Wired to ScrollTrigger so every scroll animation stays
+// perfectly in sync, and to the nav anchors so in-page jumps ease too. Lenis
+// drives the NATIVE scroll position (no transform wrapper), so position:fixed —
+// e.g. the header — keeps working. gsap.matchMedia tears it all down (restores
+// native scroll + GSAP defaults) when the viewport drops to mobile.
+function initSmoothScroll() {
+  if (!window.Lenis) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // A plain width query (not compounded with prefers-reduced-motion) so the
+  // matchMedia change — and therefore the cleanup below — fires reliably when
+  // the viewport crosses 640px. Reduced motion is handled inside instead.
+  gsap.matchMedia().add("(min-width: 640px)", () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    window.lenis = lenis; // expose for debugging / external control
+
+    // Keep ScrollTrigger in lockstep with Lenis' animated scroll position,
+    // and let GSAP's ticker drive Lenis' rAF loop.
+    lenis.on("scroll", ScrollTrigger.update);
+    const raf = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(raf);
+    gsap.ticker.lagSmoothing(0);
+
+    // Ease in-page anchor jumps (nav links) through Lenis too.
+    const onAnchorClick = (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const hash = link.getAttribute("href");
+      if (!hash || hash.length < 2) return; // ignore a bare "#"
+      const target = document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target, { offset: -16 });
+    };
+    document.addEventListener("click", onAnchorClick);
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      document.removeEventListener("click", onAnchorClick);
+      gsap.ticker.remove(raf);
+      gsap.ticker.lagSmoothing(500, 33); // restore GSAP default
+      lenis.destroy();
+      // destroy() doesn't always strip the root classes; clear them so the
+      // page reverts cleanly to native scroll on mobile.
+      document.documentElement.classList.remove(
+        "lenis",
+        "lenis-smooth",
+        "lenis-scrolling",
+        "lenis-stopped"
+      );
+      delete window.lenis;
+      ScrollTrigger.refresh();
+    };
+  }
+  );
+}
 
 function initHeroTitleAnimation() {
   const heroTitle = document.querySelector("#hero-title");

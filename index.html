@@ -1,160 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Runs during head parse (before first paint) so the hero title can be
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Runs during head parse (before first paint) so the hero title can be
          hidden up-front via CSS, avoiding a flash of the text before GSAP
          takes over. Gated on a class so the text stays visible if JS is off. -->
-    <script>
-      document.documentElement.classList.add("js-anim");
-    </script>
-    <link rel="icon" href="data:," />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="./public/assets/styles/global.css" />
-    <link rel="stylesheet" href="./public/assets/styles/homepage.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
-      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-    <title>HomePage - HERA Resort</title>
-  </head>
-  <body>
-    <main class="home-page" id="home-page">
-      <header class="header" aria-label="Primary">
-        <div class="header-mb">
-          <img
-            src="./public/homepage/logo-hera-mb.webp"
-            class="site-logo-mb"
-            alt=""
-          />
-          <button class="button-toggle-sidebar">
-            <svg
-              width="26"
-              height="14"
-              viewBox="0 0 26 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0.75 0.75H24.6602"
-                stroke="white"
-                stroke-opacity="0.8"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-              <path
-                d="M0.75 6.73633H24.6602"
-                stroke="white"
-                stroke-opacity="0.8"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-              <path
-                d="M0.75 12.7246H24.6602"
-                stroke="white"
-                stroke-opacity="0.8"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
+  <script>
+    document.documentElement.classList.add("js-anim");
+  </script>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./public/assets/styles/global.css" />
+  <link rel="stylesheet" href="./public/assets/styles/homepage.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <!-- Lenis: momentum/eased smooth scroll (desktop only, wired to ScrollTrigger
+         in home.js). Uses native scroll so position:fixed (the header) keeps working. -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <title>HomePage - HERA Resort</title>
+</head>
+
+<body>
+  <main class="home-page" id="home-page">
+    <header class="header" aria-label="Primary">
+      <div class="header-mb">
+        <img src="./public/homepage/logo-hera-mb.webp" class="site-logo-mb" alt="" />
+        <button class="button-toggle-sidebar">
+          <svg width="26" height="14" viewBox="0 0 26 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.75 0.75H24.6602" stroke="white" stroke-opacity="0.8" stroke-width="1.5"
+              stroke-linecap="round" />
+            <path d="M0.75 6.73633H24.6602" stroke="white" stroke-opacity="0.8" stroke-width="1.5"
+              stroke-linecap="round" />
+            <path d="M0.75 12.7246H24.6602" stroke="white" stroke-opacity="0.8" stroke-width="1.5"
+              stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="site-header">
+        <a href="/">Trang chủ</a>
+        <a href="#experience">Trải nghiệm dự án</a>
+        <a href="#gallery">Sa bàn</a>
+        <div class="site-logo">
+          <img src="./public/homepage/logo-hera.webp" alt="HERA Resort" />
+          <button class="btn-close-sidebar">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.541016 0.541016L12.7331 12.7331" stroke="white" stroke-opacity="0.8" stroke-width="1.08169"
+                stroke-linecap="round" />
+              <path d="M0.541016 12.7324L12.7331 0.540355" stroke="white" stroke-opacity="0.8" stroke-width="1.08169"
+                stroke-linecap="round" />
             </svg>
           </button>
         </div>
-        <div class="site-header">
-          <a href="/">Trang chủ</a>
-          <a href="#experience">Trải nghiệm dự án</a>
-          <a href="#gallery">Sa bàn</a>
-          <div class="site-logo">
-            <img src="./public/homepage/logo-hera.webp" alt="HERA Resort" />
-            <button class="btn-close-sidebar">
-              <svg
-                width="18"
-                height="14"
-                viewBox="0 0 18 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.541016 0.541016L12.7331 12.7331"
-                  stroke="white"
-                  stroke-opacity="0.8"
-                  stroke-width="1.08169"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M0.541016 12.7324L12.7331 0.540355"
-                  stroke="white"
-                  stroke-opacity="0.8"
-                  stroke-width="1.08169"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-          <a href="#investment">Tiềm năng đầu tư</a>
-          <a href="#library">Thư viện</a>
-          <a href="#news">Tin tức</a>
-        </div>
-      </header>
-      <section class="section hero" aria-labelledby="hero-title">
-        <!-- <img
+        <a href="#investment">Tiềm năng đầu tư</a>
+        <a href="#library">Thư viện</a>
+        <a href="#news">Tin tức</a>
+      </div>
+    </header>
+    <section class="section hero" aria-labelledby="hero-title">
+      <!-- <img
           src="./public/homepage/background.webp"
           alt=""
           class="background"
         /> -->
 
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/banner-mb.webp"
-          />
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/banner-mb.webp" />
 
-          <img
-            src="./public/homepage/background.webp"
-            alt=""
-            class="background"
-          />
-        </picture>
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/muithuyen_mb.webp"
-          />
+        <img src="./public/homepage/background.webp" alt="" class="background" />
+      </picture>
+      <!-- <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/muithuyen_mb.webp" />
 
-          <img
-            src="./public/homepage/mui-thuyen.webp"
-            alt=""
-            class="muithuyen"
-          />
-        </picture>
-        <video
-          class="hero-video"
-          src="./public/assets/videos/hera_pc.webm"
-          autoplay
-          muted
-          loop
-          playsinline
-        ></video>
-        <img src="./public/homepage/test.webp" alt="" class="hero-video-mb" />
-        <!-- <video
-          class="hero-video-mb"
-          src="./public/assets/videos/hera_mb.webm"
-          autoplay
-          muted
-          loop
-          playsinline
-        ></video> -->
-        <!-- <video
+        <img src="./public/homepage/mui-thuyen.webp" alt="" class="muithuyen" />
+      </picture> -->
+      <video class="hero-video" src="./public/assets/videos/hera_pc.webm" autoplay muted loop playsinline></video>
+      <!-- <img src="./public/homepage/test.webp" alt="" class="hero-video-mb" /> -->
+      <video class="hero-video-mb" src="./public/assets/videos/hera_mb.webm" autoplay muted loop playsinline></video>
+      <!-- <video
           class="hero-video"
           src="./public/assets/videos/hera_mb.webm"
           autoplay
@@ -162,1083 +89,913 @@
           loop
           playsinline
         ></video> -->
-        <div class="hero-title title-display" id="hero-title">
-          <span class="hero-title__group">
-            <span class="gradient-title">Tựa núi</span>
-            <span class="gradient-title">nhìn mây</span>
-          </span>
-          <span class="hero-title__group">
-            <span class="gradient-title">Say miền</span>
-            <span class="gradient-title">biển biếc</span>
-          </span>
-        </div>
-        <div class="say-band" aria-hidden="true"></div>
-        <div class="say-copy body-lg">
-          <p>
-            Say là khi ta để trái tim thăng hoa giữa nhịp sống Santorini rực rỡ
-            tại The Hera Resort, lãng đãng hòa mình vào vẻ đẹp nguyên sơ của đại
-            ngàn và biển biếc.
+      <div class="hero-title title-display" id="hero-title">
+        <span class="hero-title__group">
+          <span class="gradient-title">Tựa núi</span>
+          <span class="gradient-title">nhìn mây</span>
+        </span>
+        <span class="hero-title__group">
+          <span class="gradient-title">Say miền</span>
+          <span class="gradient-title">biển biếc</span>
+        </span>
+      </div>
+      <div class="say-band" aria-hidden="true"></div>
+      <div class="say-copy body-lg">
+        <p>
+          Say là khi ta để trái tim thăng hoa giữa nhịp sống Santorini rực rỡ
+          tại The Hera Resort, lãng đãng hòa mình vào vẻ đẹp nguyên sơ của đại
+          ngàn và biển biếc. Khi người ta say, mọi rào cản đều tan biến để nhường chỗ cho những
+          rung cảm chân thật nhất.
+        </p>
+      </div>
+      <div class="say-columns">
+        <article class="say-card">
+          <h2>Say thiên nhiên</h2>
+          <p class="body-lg">
+            Say cái chạm nhẹ của gió biển Quy Nhơn, say bầu không khí tinh
+            khôi và ánh bình minh nhuộm vàng vịnh biếc vĩnh cửu.
           </p>
-          <p>
-            Khi người ta say, mọi rào cản đều tan biến để nhường chỗ cho những
-            rung cảm chân thật nhất.
+        </article>
+        <article class="say-card">
+          <h2>Say con người</h2>
+          <p class="body-lg">
+            Say nụ cười chân phương của người bản xứ, say nhịp sống dung dị và
+            những câu chuyện nồng hậu giữa miền cát trắng.
           </p>
-        </div>
-        <div class="say-columns">
-          <article class="say-card">
-            <h2>Say thiên nhiên</h2>
-            <p class="body-lg">
-              Say cái chạm nhẹ của gió biển Quy Nhơn, say bầu không khí tinh
-              khôi và ánh bình minh nhuộm vàng vịnh biếc vĩnh cửu.
-            </p>
-          </article>
-          <article class="say-card">
-            <h2>Say con người</h2>
-            <p class="body-lg">
-              Say nụ cười chân phương của người bản xứ, say nhịp sống dung dị và
-              những câu chuyện nồng hậu giữa miền cát trắng.
-            </p>
-          </article>
-          <article class="say-card">
-            <h2>Say kiệt tác</h2>
-            <p class="body-lg">
-              Say sắc trắng Santorini rực rỡ nương mình vào núi đá, say nhịp
-              sống phóng khoáng bừng sắc tại thiên đường du lịch hàng đầu thế
-              giới.
-            </p>
-          </article>
-        </div>
-      </section>
-      <div class="background-2-section">
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/background-tuyet-tac-mb.webp"
-          />
+        </article>
+        <article class="say-card">
+          <h2>Say kiệt tác</h2>
+          <p class="body-lg">
+            Say sắc trắng Santorini rực rỡ nương mình vào núi đá, say nhịp
+            sống phóng khoáng bừng sắc tại thiên đường du lịch hàng đầu thế
+            giới.
+          </p>
+        </article>
+      </div>
+    </section>
+    <div class="background-2-section">
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/background-tuyet-tac-mb.webp" />
 
-          <img
-            src="./public/homepage/background-tuyet-tac.webp"
-            alt=""
-            class="background-tuyet-tac"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <!-- <img
+        <img src="./public/homepage/background-tuyet-tac.webp" alt="" class="background-tuyet-tac" loading="lazy"
+          decoding="async" />
+      </picture>
+      <!-- <img
           src="./public/homepage/background-tuyet-tac.webp"
           class="background-tuyet-tac"
           alt=""
         /> -->
+    </div>
+    <section class="section santorini" aria-labelledby="santorini-title">
+      <div class="santorini-copy">
+        <h2 class="stacked-title title-xl" id="santorini-title">
+          <span>Tuyệt tác</span>
+          <span>Santorini</span>
+          <span>miền nhiệt đới</span>
+        </h2>
+        <img class="section-symbol" src="./public/homepage/symbol-brown.webp" alt="" />
+        <p class="body-lg">
+          Tuyệt tác nghỉ dưỡng đa trải nghiệm phong cách Santorini nhiệt đới
+          lần đầu tiên xuất hiện tại Việt Nam.
+        </p>
       </div>
-      <section class="section santorini" aria-labelledby="santorini-title">
-        <div class="santorini-copy">
-          <h2 class="stacked-title title-xl" id="santorini-title">
-            <span>Tuyệt tác</span>
-            <span>Santorini</span>
-            <span>miền nhiệt đới</span>
-          </h2>
-          <img
-            class="section-symbol"
-            src="./public/homepage/symbol-brown.webp"
-            alt=""
-          />
-          <p class="body-lg">
-            Tuyệt tác nghỉ dưỡng đa trải nghiệm phong cách Santorini nhiệt đới
-            lần đầu tiên xuất hiện tại Việt Nam.
-          </p>
-        </div>
-      </section>
-      <div class="background-2-section">
-        <!-- <img
+    </section>
+    <div class="background-2-section">
+      <!-- <img
           src="./public/homepage/color_layer.webp"
           class="background-color-layer"
           alt=""
         /> -->
-        <div class="background-color-layer"></div>
-        <!-- <img
+      <div class="background-color-layer"></div>
+      <!-- <img
           src="./public/homepage/hera-resort.webp"
           alt=""
           class="logo-text"
         /> -->
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/hera-resort-mb.webp"
-          />
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/hera-resort-mb.webp" />
 
-          <img
-            src="./public/homepage/hera-resort.webp"
-            alt=""
-            class="logo-text"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <!-- <img
+        <img src="./public/homepage/hera-resort.webp" alt="" class="logo-text" loading="lazy" decoding="async" />
+      </picture>
+      <!-- <img
           src="./public/homepage/section_21.webp"
           class="background-the-hera"
           alt=""
         /> -->
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/section_21-mb.webp"
-          />
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/section_21-mb.webp" />
 
-          <img
-            src="./public/homepage/section_21.webp"
-            alt=""
-            class="background-the-hera"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </div>
-      <section class="section blue project" aria-labelledby="project-title">
-        <!-- <div class="logo-text">The</div> -->
-        <div class="project-copy">
-          <h2 class="project-title title-xl" id="project-title">
-            <span>Điểm đến</span>
-            <span>thượng lưu</span>
-            <small
-              >chưa từng có tại thiên đường du lịch<br />hàng đầu thế
-              giới</small
-            >
-          </h2>
-          <img
-            class="section-symbol"
-            src="./public/homepage/symbol-blue.webp"
-            alt=""
-          />
-          <div class="project-facts body-md">
-            <div class="fact">
-              <strong>Chủ đầu tư:</strong>
-              <p>Công ty Cổ phần Hera Quy Nhơn</p>
-            </div>
-            <div class="fact">
-              <strong>Vị trí:</strong>
-              <p>
-                Quốc lộ 1D tuyến Quy Nhơn - Sông Cầu<br />Phường Quy Nhơn Nam,
-                Tỉnh Gia Lai, VN
-              </p>
-            </div>
-            <div class="fact">
-              <strong>Quy mô:</strong>
-              <p>16,62 ha</p>
-            </div>
-            <div class="fact">
-              <strong>Sản phẩm:</strong>
-              <p>
-                THE HELIOS SIGNATURE: 68 căn<br />THE SELENE COLLECTION: 80
-                căn<br />THE ATHENA OCEAN: 700 căn
-              </p>
-            </div>
-            <div class="fact">
-              <strong>Tiêu chuẩn bàn giao:</strong>
-              <p>Full nội thất hoàn thiện cao cấp</p>
-            </div>
-            <div class="fact">
-              <strong>Pháp lý:</strong>
-              <p>Sổ đỏ từng căn</p>
-            </div>
+        <img src="./public/homepage/section_21.webp" alt="" class="background-the-hera" loading="lazy"
+          decoding="async" />
+      </picture>
+    </div>
+    <section class="section blue project" aria-labelledby="project-title">
+      <!-- <div class="logo-text">The</div> -->
+      <div class="project-copy">
+        <h2 class="project-title title-xl" id="project-title">
+          <span>Điểm đến</span>
+          <span>thượng lưu</span>
+          <small>chưa từng có tại thiên đường du lịch<br />hàng đầu thế
+            giới</small>
+        </h2>
+        <img class="section-symbol" src="./public/homepage/symbol-blue.webp" alt="" />
+        <div class="project-facts body-md">
+          <div class="fact">
+            <strong>Chủ đầu tư:</strong>
+            <p>Công ty Cổ phần Hera Quy Nhơn</p>
+          </div>
+          <div class="fact">
+            <strong>Vị trí:</strong>
+            <p>
+              Quốc lộ 1D tuyến Quy Nhơn - Sông Cầu<br />Phường Quy Nhơn Nam,
+              Tỉnh Gia Lai, VN
+            </p>
+          </div>
+          <div class="fact">
+            <strong>Quy mô:</strong>
+            <p>16,62 ha</p>
+          </div>
+          <div class="fact">
+            <strong>Sản phẩm:</strong>
+            <p>
+              THE HELIOS SIGNATURE: 68 căn<br />THE SELENE COLLECTION: 80
+              căn<br />THE ATHENA OCEAN: 700 căn
+            </p>
+          </div>
+          <div class="fact">
+            <strong>Tiêu chuẩn bàn giao:</strong>
+            <p>Full nội thất hoàn thiện cao cấp</p>
+          </div>
+          <div class="fact">
+            <strong>Pháp lý:</strong>
+            <p>Sổ đỏ từng căn</p>
           </div>
         </div>
-      </section>
-      <section class="section blue location" aria-labelledby="location-title">
-        <div class="location-copy">
-          <h2 class="location-head" id="location-title">
-            <span class="subtitle">Tọa độ độc bản</span>
-            <span class="title-xl">giữa núi rừng <br />nguyên sơ</span>
-            <span class="title-xl">&amp;</span>
-            <span class="title-xl">Vịnh Tiên <br />Quy Nhơn</span>
-          </h2>
-          <div class="location-slider">
-            <div class="swiper location-swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div class="distance-list">
-                    <article class="distance-item">
-                      <div>
-                        <h3>Trung tâm Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Kết nối nhanh trung tâm hành chính, thương mại, du
-                          lịch và dịch vụ
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>5 km</strong><span>10 phút</span>
+      </div>
+    </section>
+    <section class="section blue location" aria-labelledby="location-title">
+      <div class="location-copy">
+        <h2 class="location-head" id="location-title">
+          <span class="subtitle">Tọa độ độc bản</span>
+          <span class="title-xl">giữa núi rừng <br />nguyên sơ</span>
+          <span class="title-xl">&amp;</span>
+          <span class="title-xl">Vịnh Tiên <br />Quy Nhơn</span>
+        </h2>
+        <div class="location-slider">
+          <div class="swiper location-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="distance-list">
+                  <article class="distance-item">
+                    <div>
+                      <h3>Trung tâm Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Kết nối nhanh trung tâm hành chính, thương mại, du
+                        lịch và dịch vụ
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Bãi biển Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Trục biển trung tâm - nhịp sống phố biển - không gian
-                          du lịch sôi động
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>7,4 km</strong><span>12 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>5 km</strong><span>10 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Bãi biển Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Trục biển trung tâm - nhịp sống phố biển - không gian
+                        du lịch sôi động
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Bãi Xép - Ghềnh Ráng</h3>
-                        <p class="body-sm muted-blue">
-                          Làng biển nguyên sơ - nghỉ dưỡng ven vịnh - trải
-                          nghiệm bản địa
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>3,3 km</strong><span>6 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>7,4 km</strong><span>12 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Bãi Xép - Ghềnh Ráng</h3>
+                      <p class="body-sm muted-blue">
+                        Làng biển nguyên sơ - nghỉ dưỡng ven vịnh - trải
+                        nghiệm bản địa
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Trường Đại học Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Trung tâm giáo dục - cộng đồng tri thức
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>8,6 km</strong><span>14 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>3,3 km</strong><span>6 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Trường Đại học Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Trung tâm giáo dục - cộng đồng tri thức
                       </p>
-                    </article>
-                  </div>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>8,6 km</strong><span>14 phút</span>
+                    </p>
+                  </article>
                 </div>
-                <div class="swiper-slide">
-                  <div class="distance-list">
-                    <article class="distance-item">
-                      <div>
-                        <h3>Sân bay Phù Cát</h3>
-                        <p class="body-sm muted-blue">
-                          Cửa ngõ hàng không kết nối cả nước và quốc tế
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>30 km</strong><span>35 phút</span>
+              </div>
+              <div class="swiper-slide">
+                <div class="distance-list">
+                  <article class="distance-item">
+                    <div>
+                      <h3>Sân bay Phù Cát</h3>
+                      <p class="body-sm muted-blue">
+                        Cửa ngõ hàng không kết nối cả nước và quốc tế
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Ga Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Đầu mối đường sắt Bắc - Nam ngay nội đô
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>9 km</strong><span>15 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>30 km</strong><span>35 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Ga Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Đầu mối đường sắt Bắc - Nam ngay nội đô
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Cảng Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Cảng biển trọng điểm khu vực miền Trung
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>10 km</strong><span>16 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>9 km</strong><span>15 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Cảng Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Cảng biển trọng điểm khu vực miền Trung
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Quảng trường Nguyễn Tất Thành</h3>
-                        <p class="body-sm muted-blue">
-                          Không gian biểu tượng - sự kiện văn hóa thành phố
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>8 km</strong><span>13 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>10 km</strong><span>16 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Quảng trường Nguyễn Tất Thành</h3>
+                      <p class="body-sm muted-blue">
+                        Không gian biểu tượng - sự kiện văn hóa thành phố
                       </p>
-                    </article>
-                  </div>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>8 km</strong><span>13 phút</span>
+                    </p>
+                  </article>
                 </div>
-                <div class="swiper-slide">
-                  <div class="distance-list">
-                    <article class="distance-item">
-                      <div>
-                        <h3>Eo Gió</h3>
-                        <p class="body-sm muted-blue">
-                          Thắng cảnh "thiên đường biển" nổi tiếng Nhơn Lý
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>12 km</strong><span>18 phút</span>
+              </div>
+              <div class="swiper-slide">
+                <div class="distance-list">
+                  <article class="distance-item">
+                    <div>
+                      <h3>Eo Gió</h3>
+                      <p class="body-sm muted-blue">
+                        Thắng cảnh "thiên đường biển" nổi tiếng Nhơn Lý
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Kỳ Co</h3>
-                        <p class="body-sm muted-blue">
-                          Bãi tắm hoang sơ - làn nước trong xanh như ngọc
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>18 km</strong><span>25 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>12 km</strong><span>18 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Kỳ Co</h3>
+                      <p class="body-sm muted-blue">
+                        Bãi tắm hoang sơ - làn nước trong xanh như ngọc
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Tháp Đôi</h3>
-                        <p class="body-sm muted-blue">
-                          Di tích kiến trúc Chăm Pa giữa lòng thành phố
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>7 km</strong><span>12 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>18 km</strong><span>25 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Tháp Đôi</h3>
+                      <p class="body-sm muted-blue">
+                        Di tích kiến trúc Chăm Pa giữa lòng thành phố
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Ghềnh Ráng Tiên Sa</h3>
-                        <p class="body-sm muted-blue">
-                          Danh thắng ven biển - mộ Hàn Mặc Tử
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>4 km</strong><span>8 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>7 km</strong><span>12 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Ghềnh Ráng Tiên Sa</h3>
+                      <p class="body-sm muted-blue">
+                        Danh thắng ven biển - mộ Hàn Mặc Tử
                       </p>
-                    </article>
-                  </div>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>4 km</strong><span>8 phút</span>
+                    </p>
+                  </article>
                 </div>
-                <div class="swiper-slide">
-                  <div class="distance-list">
-                    <article class="distance-item">
-                      <div>
-                        <h3>FLC Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Quần thể nghỉ dưỡng - sân golf links ven biển
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>20 km</strong><span>28 phút</span>
+              </div>
+              <div class="swiper-slide">
+                <div class="distance-list">
+                  <article class="distance-item">
+                    <div>
+                      <h3>FLC Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Quần thể nghỉ dưỡng - sân golf links ven biển
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Trung Lương</h3>
-                        <p class="body-sm muted-blue">
-                          Bãi biển cắm trại - check-in hoang sơ Cát Tiến
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>25 km</strong><span>32 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>20 km</strong><span>28 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Trung Lương</h3>
+                      <p class="body-sm muted-blue">
+                        Bãi biển cắm trại - check-in hoang sơ Cát Tiến
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Cù Lao Xanh</h3>
-                        <p class="body-sm muted-blue">
-                          Đảo tiền tiêu - hải đăng cổ và rạn san hô
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>24 km</strong><span>40 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>25 km</strong><span>32 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Cù Lao Xanh</h3>
+                      <p class="body-sm muted-blue">
+                        Đảo tiền tiêu - hải đăng cổ và rạn san hô
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Hầm Hô</h3>
-                        <p class="body-sm muted-blue">
-                          Khu du lịch sinh thái sông suối - rừng nguyên sinh
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>45 km</strong><span>55 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>24 km</strong><span>40 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Hầm Hô</h3>
+                      <p class="body-sm muted-blue">
+                        Khu du lịch sinh thái sông suối - rừng nguyên sinh
                       </p>
-                    </article>
-                  </div>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>45 km</strong><span>55 phút</span>
+                    </p>
+                  </article>
                 </div>
-                <div class="swiper-slide">
-                  <div class="distance-list">
-                    <article class="distance-item">
-                      <div>
-                        <h3>Vincom Plaza Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Trung tâm thương mại - giải trí bậc nhất thành phố
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>8,2 km</strong><span>13 phút</span>
+              </div>
+              <div class="swiper-slide">
+                <div class="distance-list">
+                  <article class="distance-item">
+                    <div>
+                      <h3>Vincom Plaza Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Trung tâm thương mại - giải trí bậc nhất thành phố
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Chợ Lớn Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Chợ truyền thống sầm uất bậc nhất Bình Định
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>8,5 km</strong><span>14 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>8,2 km</strong><span>13 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Chợ Lớn Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Chợ truyền thống sầm uất bậc nhất Bình Định
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Bệnh viện Đa khoa tỉnh</h3>
-                        <p class="body-sm muted-blue">
-                          Trung tâm y tế tuyến đầu khu vực Nam Trung Bộ
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>8 km</strong><span>13 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>8,5 km</strong><span>14 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Bệnh viện Đa khoa tỉnh</h3>
+                      <p class="body-sm muted-blue">
+                        Trung tâm y tế tuyến đầu khu vực Nam Trung Bộ
                       </p>
-                    </article>
-                    <article class="distance-item">
-                      <div>
-                        <h3>Big C Quy Nhơn</h3>
-                        <p class="body-sm muted-blue">
-                          Đại siêu thị - mua sắm tiện ích mỗi ngày
-                        </p>
-                      </div>
-                      <span class="distance-line"></span>
-                      <p class="distance-stat">
-                        <strong>9 km</strong><span>15 phút</span>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>8 km</strong><span>13 phút</span>
+                    </p>
+                  </article>
+                  <article class="distance-item">
+                    <div>
+                      <h3>Big C Quy Nhơn</h3>
+                      <p class="body-sm muted-blue">
+                        Đại siêu thị - mua sắm tiện ích mỗi ngày
                       </p>
-                    </article>
-                  </div>
+                    </div>
+                    <span class="distance-line"></span>
+                    <p class="distance-stat">
+                      <strong>9 km</strong><span>15 phút</span>
+                    </p>
+                  </article>
                 </div>
               </div>
             </div>
-            <div class="dots location-pagination" aria-hidden="true"></div>
           </div>
+          <div class="dots location-pagination" aria-hidden="true"></div>
         </div>
-      </section>
-      <div class="background-2-section background-2-section__dao">
-        <!-- <img
+      </div>
+    </section>
+    <div class="background-2-section background-2-section__dao">
+      <!-- <img
           src="./public/homepage/bg-dao.webp"
           class="background-dao"
           alt=""
         /> -->
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/dao-mb.webp"
-          />
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/dao-mb.webp" />
 
-          <img
-            src="./public/homepage/bg-dao.webp"
-            alt=""
-            class="background-dao"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <img
-          src="./public/homepage/graphic_super.webp"
-          class="graphic_super"
-          alt=""
-        />
+        <img src="./public/homepage/bg-dao.webp" alt="" class="background-dao" loading="lazy" decoding="async" />
+      </picture>
+      <img src="./public/homepage/graphic_super.webp" class="graphic_super" alt="" />
+    </div>
+    <section class="section blue quote">
+      <img src="./public/homepage/img_bird.png" alt="" class="bird" aria-hidden="true" loading="lazy"
+        decoding="async" />
+      <div class="quote-copy">
+        <p class="subtitle">
+          Khi thiên nhiên và kiến trúc<br />cùng chắp bút cho những
+        </p>
+        <h2 class="title-xl">bản giao hưởng<br />huyền thoại</h2>
       </div>
-      <section class="section blue quote">
-        <img
-          src="./public/homepage/img_bird.png"
-          alt=""
-          class="bird"
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
-        <div class="quote-copy">
-          <p class="subtitle">
-            Khi thiên nhiên và kiến trúc<br />cùng chắp bút cho những
-          </p>
-          <h2 class="title-xl">bản giao hưởng<br />huyền thoại</h2>
+    </section>
+    <div class="background-2-section">
+      <img src="./public/homepage/bg-duoi-dao.webp" class="bg-duoi-dao" alt="" />
+    </div>
+    <section class="section blue amenities" id="experience" aria-labelledby="amenities-title">
+      <div class="amenities-copy">
+        <h2 class="title-xl" id="amenities-title">
+          Tiện ích<br />THE HERA RESORT
+        </h2>
+        <p class="subtitle muted-blue">
+          Vạn trải nghiệm giữa <br />núi rừng và vịnh biển
+        </p>
+        <div class="arrow-row">
+          <button class="amenities-prev button-navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
+              <path d="M7.5 0.5L0.5 7.5L7.5 14.5" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button class="amenities-next button-navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
+              <path d="M0.5 0.5L7.5 7.5L0.5 14.5" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
         </div>
-      </section>
-      <div class="background-2-section">
-        <img
-          src="./public/homepage/bg-duoi-dao.webp"
-          class="bg-duoi-dao"
-          alt=""
-        />
       </div>
-      <section
-        class="section blue amenities"
-        id="experience"
-        aria-labelledby="amenities-title"
-      >
-        <div class="amenities-copy">
-          <h2 class="title-xl" id="amenities-title">
-            Tiện ích<br />THE HERA RESORT
-          </h2>
-          <p class="subtitle muted-blue">
-            Vạn trải nghiệm giữa <br />núi rừng và vịnh biển
-          </p>
-          <div class="arrow-row">
-            <button class="amenities-prev button-navigation">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="8"
-                height="15"
-                viewBox="0 0 8 15"
-                fill="none"
-              >
-                <path
-                  d="M7.5 0.5L0.5 7.5L7.5 14.5"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-            <button class="amenities-next button-navigation">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="8"
-                height="15"
-                viewBox="0 0 8 15"
-                fill="none"
-              >
-                <path
-                  d="M0.5 0.5L7.5 7.5L0.5 14.5"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
+      <div class="swiper amenities-swiper">
+        <div class="swiper-wrapper">
+          <article class="swiper-slide amenity-card">
+            <img src="./public/homepage/utility-1.webp" alt="" />
+            <div class="amenity-label">
+              <strong>01.</strong><span>Bến du thuyền</span>
+            </div>
+          </article>
+          <article class="swiper-slide amenity-card">
+            <img src="./public/homepage/utility-2.webp" alt="" />
+            <div class="amenity-label">
+              <strong>02.</strong><span>Bến du thuyền</span>
+            </div>
+          </article>
+          <article class="swiper-slide amenity-card">
+            <img src="./public/homepage/utility-3.webp" alt="" />
+            <div class="amenity-label">
+              <strong>03.</strong><span>Bến du thuyền</span>
+            </div>
+          </article>
         </div>
-        <div class="swiper amenities-swiper">
-          <div class="swiper-wrapper">
-            <article class="swiper-slide amenity-card">
-              <img src="./public/homepage/utility-1.webp" alt="" />
-              <div class="amenity-label">
-                <strong>01.</strong><span>Bến du thuyền</span>
-              </div>
-            </article>
-            <article class="swiper-slide amenity-card">
-              <img src="./public/homepage/utility-2.webp" alt="" />
-              <div class="amenity-label">
-                <strong>02.</strong><span>Bến du thuyền</span>
-              </div>
-            </article>
-            <article class="swiper-slide amenity-card">
-              <img src="./public/homepage/utility-3.webp" alt="" />
-              <div class="amenity-label">
-                <strong>03.</strong><span>Bến du thuyền</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-      <!-- <div class="background-2-section">
+      </div>
+    </section>
+    <!-- <div class="background-2-section">
         <img
           src="./public/homepage/graphic_super.webp"
           class="graphic_super"
           alt=""
         />
       </div> -->
-      <section
-        class="section blue investment"
-        id="investment"
-        aria-labelledby="investment-title"
-      >
-        <!-- <img
+    <section class="section blue investment" id="investment" aria-labelledby="investment-title">
+      <!-- <img
           src="./public/homepage/section8.webp"
           alt=""
           class="section-10-img section-8-img"
         /> -->
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/bg-duoi-duoi-dao.webp"
-          />
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/bg-duoi-duoi-dao.webp" />
 
-          <img
-            src="./public/homepage/section8.webp"
-            alt=""
-            class="section-10-img section-8-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
+        <img src="./public/homepage/section8.webp" alt="" class="section-10-img section-8-img" loading="lazy"
+          decoding="async" />
+      </picture>
 
-        <div class="peacock">
-          <img
-            src="./public/homepage/peacock_tail-1.webp"
-            alt=""
-            class="peacock-1"
-          />
-          <img
-            src="./public/homepage/peacock_tail-2.webp"
-            alt=""
-            class="peacock-2"
-          />
-        </div>
-        <div class="investment-title">
-          <h2 class="title-xl" id="investment-title">Vạn trải nghiệm</h2>
-          <p class="title-xl muted-blue">đa sắc</p>
-          <p class="subtitle">Bền đa tầng lợi nhuận</p>
-        </div>
-        <div class="swiper investment-swiper">
-          <!-- Centered "fan" carousel: needs enough slides so loop mode can
+      <div class="peacock">
+        <img src="./public/homepage/peacock_tail-1.webp" alt="" class="peacock-1" />
+        <img src="./public/homepage/peacock_tail-2.webp" alt="" class="peacock-2" />
+      </div>
+      <div class="investment-title">
+        <h2 class="title-xl" id="investment-title">Vạn trải nghiệm</h2>
+        <p class="title-xl muted-blue">đa sắc</p>
+        <p class="subtitle">Bền đa tầng lợi nhuận</p>
+      </div>
+      <div class="swiper investment-swiper">
+        <!-- Centered "fan" carousel: needs enough slides so loop mode can
                fill both sides of the centre at all times (Swiper warns + jumps
                when there are too few). The three real concepts (01/02/03) are
                cycled so neighbours never repeat, giving the varied fan in the
                Figma reference. -->
-          <div class="swiper-wrapper">
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-1.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>01.</strong>
-                <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
-                <p>
-                  Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
-                  tâm thành phố.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-3.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>02.</strong>
-                <h3>
-                  KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
-                </h3>
-                <p>
-                  Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
-                  núi.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-2.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>03.</strong>
-                <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
-                <p>
-                  Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
-                  khoáng, trọn vẹn mọi cung bậc.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-1.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>01.</strong>
-                <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
-                <p>
-                  Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
-                  tâm thành phố.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-3.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>02.</strong>
-                <h3>
-                  KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
-                </h3>
-                <p>
-                  Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
-                  núi.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-2.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>03.</strong>
-                <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
-                <p>
-                  Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
-                  khoáng, trọn vẹn mọi cung bậc.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-1.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>01.</strong>
-                <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
-                <p>
-                  Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
-                  tâm thành phố.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-3.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>02.</strong>
-                <h3>
-                  KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
-                </h3>
-                <p>
-                  Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
-                  núi.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-2.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>03.</strong>
-                <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
-                <p>
-                  Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
-                  khoáng, trọn vẹn mọi cung bậc.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-1.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>01.</strong>
-                <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
-                <p>
-                  Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
-                  tâm thành phố.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-3.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>02.</strong>
-                <h3>
-                  KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
-                </h3>
-                <p>
-                  Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
-                  núi.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-2.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>03.</strong>
-                <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
-                <p>
-                  Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
-                  khoáng, trọn vẹn mọi cung bậc.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-1.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>01.</strong>
-                <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
-                <p>
-                  Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
-                  tâm thành phố.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-3.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>02.</strong>
-                <h3>
-                  KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
-                </h3>
-                <p>
-                  Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
-                  núi.
-                </p>
-              </div>
-            </article>
-            <article class="swiper-slide investment-card">
-              <img src="./public/homepage/investment-2.webp" alt="" />
-              <div class="investment-card__copy">
-                <strong>03.</strong>
-                <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
-                <p>
-                  Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
-                  khoáng, trọn vẹn mọi cung bậc.
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="investment-pagination dots"></div>
+        <div class="swiper-wrapper">
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-1.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>01.</strong>
+              <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
+              <p>
+                Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
+                tâm thành phố.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-3.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>02.</strong>
+              <h3>
+                KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
+              </h3>
+              <p>
+                Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
+                núi.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-2.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>03.</strong>
+              <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
+              <p>
+                Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
+                khoáng, trọn vẹn mọi cung bậc.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-1.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>01.</strong>
+              <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
+              <p>
+                Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
+                tâm thành phố.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-3.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>02.</strong>
+              <h3>
+                KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
+              </h3>
+              <p>
+                Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
+                núi.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-2.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>03.</strong>
+              <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
+              <p>
+                Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
+                khoáng, trọn vẹn mọi cung bậc.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-1.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>01.</strong>
+              <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
+              <p>
+                Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
+                tâm thành phố.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-3.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>02.</strong>
+              <h3>
+                KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
+              </h3>
+              <p>
+                Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
+                núi.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-2.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>03.</strong>
+              <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
+              <p>
+                Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
+                khoáng, trọn vẹn mọi cung bậc.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-1.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>01.</strong>
+              <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
+              <p>
+                Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
+                tâm thành phố.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-3.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>02.</strong>
+              <h3>
+                KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
+              </h3>
+              <p>
+                Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
+                núi.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-2.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>03.</strong>
+              <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
+              <p>
+                Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
+                khoáng, trọn vẹn mọi cung bậc.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-1.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>01.</strong>
+              <h3>VỊ TRÍ QUÝ HIẾM ĐỘC BẢN TẠI NỘI ĐÔ QUY NHƠN</h3>
+              <p>
+                Địa thế "tựa sơn hướng hải" hiếm hoi còn sót lại ngay trung
+                tâm thành phố.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-3.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>02.</strong>
+              <h3>
+                KIẾN TRÚC BIỂU TƯỢNG SANTORINI NHIỆT ĐỚI ĐẦU TIÊN TẠI VIỆT NAM
+              </h3>
+              <p>
+                Một kiệt tác tôn trọng thiên nhiên và tôn tạo địa hình triền
+                núi.
+              </p>
+            </div>
+          </article>
+          <article class="swiper-slide investment-card">
+            <img src="./public/homepage/investment-2.webp" alt="" />
+            <div class="investment-card__copy">
+              <strong>03.</strong>
+              <h3>ĐIỂM ĐẾN THƯỢNG LƯU TẠI THIÊN ĐƯỜNG DU LỊCH TOÀN CẦU</h3>
+              <p>
+                Tuyệt tác nghỉ dưỡng đa trải nghiệm: rực rỡ nhịp sống phóng
+                khoáng, trọn vẹn mọi cung bậc.
+              </p>
+            </div>
+          </article>
         </div>
-      </section>
+        <div class="investment-pagination dots"></div>
+      </div>
+    </section>
 
-      <section
-        class="section blue gallery"
-        id="gallery"
-        aria-labelledby="gallery-title"
-      >
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/bg-abc-mb.webp"
-          />
+    <section class="section blue gallery" id="gallery" aria-labelledby="gallery-title">
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/bg-abc-mb.webp" />
 
-          <img
-            src="./public/homepage/bg-abc.webp"
-            alt=""
-            class="section-10-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <!-- <img
+        <img src="./public/homepage/bg-abc.webp" alt="" class="section-10-img" loading="lazy" decoding="async" />
+      </picture>
+      <!-- <img
           class="section-10-img"
           src="./public/homepage/bg-abc.webp"
           alt=""
         /> -->
-        <div class="gallery-wrap">
-          <div class="gallery-swiper-wrapper">
-            <div class="swiper-gallery-main swiper gallery-main">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="./public/homepage/gallery-main.webp"
-                    alt="Không gian dự án The Hera Resort"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="./public/homepage/gallery-main.webp"
-                    alt="Không gian dự án The Hera Resort"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="./public/homepage/gallery-main.webp"
-                    alt="Không gian dự án The Hera Resort"
-                  />
-                </div>
+      <div class="gallery-wrap">
+        <div class="gallery-swiper-wrapper">
+          <div class="swiper-gallery-main swiper gallery-main">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="./public/homepage/gallery-main.webp" alt="Không gian dự án The Hera Resort" />
               </div>
-            </div>
-            <div class="gallery-navigation-wrapper">
-              <button class="gallery-button-prev button-navigation">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8"
-                  height="15"
-                  viewBox="0 0 8 15"
-                  fill="none"
-                >
-                  <path
-                    d="M7.5 0.5L0.5 7.5L7.5 14.5"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-              <button class="gallery-button-next button-navigation">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8"
-                  height="15"
-                  viewBox="0 0 8 15"
-                  fill="none"
-                >
-                  <path
-                    d="M0.5 0.5L7.5 7.5L0.5 14.5"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
+              <div class="swiper-slide">
+                <img src="./public/homepage/gallery-main.webp" alt="Không gian dự án The Hera Resort" />
+              </div>
+              <div class="swiper-slide">
+                <img src="./public/homepage/gallery-main.webp" alt="Không gian dự án The Hera Resort" />
+              </div>
             </div>
           </div>
-          <div class="gallery-thumbs">
-            <div class="gallery-filter">
-              <img
-                src="./public/homepage/first_thump.webp"
-                class="gallery-filter__background"
-                alt=""
-              />
-              <div class="gallery-filter__inner">
-                <div class="gallery-filter__top">
-                  <h3>Hình ảnh</h3>
-                  <ul>
-                    <li>THE HELIOS SIGNATURE</li>
-                    <li>THE SELENE COLLECTION</li>
-                    <li>THE ATHENA OCEAN</li>
-                  </ul>
-                </div>
-                <button type="button" id="gallery-title">Video</button>
+          <div class="gallery-navigation-wrapper">
+            <button class="gallery-button-prev button-navigation">
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
+                <path d="M7.5 0.5L0.5 7.5L7.5 14.5" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button class="gallery-button-next button-navigation">
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="15" viewBox="0 0 8 15" fill="none">
+                <path d="M0.5 0.5L7.5 7.5L0.5 14.5" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="gallery-thumbs">
+          <div class="gallery-filter">
+            <img src="./public/homepage/first_thump.webp" class="gallery-filter__background" alt="" />
+            <div class="gallery-filter__inner">
+              <div class="gallery-filter__top">
+                <h3>Hình ảnh</h3>
+                <ul>
+                  <li>THE HELIOS SIGNATURE</li>
+                  <li>THE SELENE COLLECTION</li>
+                  <li>THE ATHENA OCEAN</li>
+                </ul>
               </div>
+              <button type="button" id="gallery-title">Video</button>
             </div>
-            <div class="swiper swiper-gallery-thumps">
-              <div class="swiper-wrapper">
-                <div class="gallery-thumb swiper-slide">
-                  <img src="./public/homepage/gallery-thumb-1.webp" alt="" />
-                </div>
-                <div class="gallery-thumb swiper-slide">
-                  <img src="./public/homepage/gallery-thumb-2.webp" alt="" />
-                </div>
-                <div class="gallery-thumb swiper-slide">
-                  <img src="./public/homepage/gallery-thumb-3.webp" alt="" />
-                </div>
-                <div class="gallery-thumb swiper-slide">
-                  <img src="./public/homepage/gallery-thumb-3.webp" alt="" />
-                </div>
+          </div>
+          <div class="swiper swiper-gallery-thumps">
+            <div class="swiper-wrapper">
+              <div class="gallery-thumb swiper-slide">
+                <img src="./public/homepage/gallery-thumb-1.webp" alt="" />
+              </div>
+              <div class="gallery-thumb swiper-slide">
+                <img src="./public/homepage/gallery-thumb-2.webp" alt="" />
+              </div>
+              <div class="gallery-thumb swiper-slide">
+                <img src="./public/homepage/gallery-thumb-3.webp" alt="" />
+              </div>
+              <div class="gallery-thumb swiper-slide">
+                <img src="./public/homepage/gallery-thumb-3.webp" alt="" />
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section blue news" id="news" aria-labelledby="news-title">
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/bg-section-12-mb.webp"
-          />
+    <section class="section blue news" id="news" aria-labelledby="news-title">
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/bg-section-12-mb.webp" />
 
-          <img
-            src="./public/homepage/bg-section-12.webp"
-            alt=""
-            class="bg-section-12"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <!-- <img
+        <img src="./public/homepage/bg-section-12.webp" alt="" class="bg-section-12" loading="lazy" decoding="async" />
+      </picture>
+      <!-- <img
           class="bg-section-12"
           src="./public/homepage/bg-section-12.webp"
           alt=""
         /> -->
-        <h2 class="title-lg" id="news-title">Tin tức</h2>
-        <div class="news-grid">
-          <article class="news-card news-card--large">
-            <div class="news-image">
-              <img src="./public/homepage/news-card.webp" alt="" />
-            </div>
-            <div class="news-copy">
-              <h3>Lorem ipsum dolor sit amet</h3>
-              <p class="body-md">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <span class="news-date body-sm">May 17, 2026</span>
-            </div>
-          </article>
-          <article class="news-card news-card--small">
-            <div class="news-image">
-              <img src="./public/homepage/news-card.webp" alt="" />
-            </div>
-            <div class="news-copy">
-              <h3>Lorem ipsum dolor sit amet</h3>
-              <p class="body-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <span class="news-date body-sm">May 17, 2026</span>
-            </div>
-          </article>
-          <article class="news-card news-card--small">
-            <div class="news-image">
-              <img src="./public/homepage/news-card.webp" alt="" />
-            </div>
-            <div class="news-copy">
-              <h3>Lorem ipsum dolor sit amet</h3>
-              <p class="body-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <span class="news-date body-sm">May 17, 2026</span>
-            </div>
-          </article>
-        </div>
-      </section>
+      <h2 class="title-lg" id="news-title">Tin tức</h2>
+      <div class="news-grid">
+        <article class="news-card news-card--large">
+          <div class="news-image">
+            <img src="./public/homepage/news-card.webp" alt="" />
+          </div>
+          <div class="news-copy">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <p class="body-md">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <span class="news-date body-sm">May 17, 2026</span>
+          </div>
+        </article>
+        <article class="news-card news-card--small">
+          <div class="news-image">
+            <img src="./public/homepage/news-card.webp" alt="" />
+          </div>
+          <div class="news-copy">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <p class="body-sm">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <span class="news-date body-sm">May 17, 2026</span>
+          </div>
+        </article>
+        <article class="news-card news-card--small">
+          <div class="news-image">
+            <img src="./public/homepage/news-card.webp" alt="" />
+          </div>
+          <div class="news-copy">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <p class="body-sm">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <span class="news-date body-sm">May 17, 2026</span>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <section
-        class="section blue library"
-        id="library"
-        aria-labelledby="library-title"
-      >
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcset="./public/homepage/section-12-img-mb.webp"
-          />
+    <section class="section blue library" id="library" aria-labelledby="library-title">
+      <picture>
+        <source media="(max-width: 639px)" srcset="./public/homepage/section-12-img-mb.webp" />
 
-          <img
-            src="./public/homepage/section-12-img.webp"
-            alt=""
-            class="section-12-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-        <!-- <img
+        <img src="./public/homepage/section-12-img.webp" alt="" class="section-12-img" loading="lazy"
+          decoding="async" />
+      </picture>
+      <!-- <img
           class="section-12-img"
           src="./public/homepage/section-12-img.webp"
           alt=""
         /> -->
-        <div class="library-wrap">
-          <h2 class="title-lg" id="library-title">Thư viện</h2>
-          <div class="download-grid">
-            <article
-              class="download-card download-card--large"
-              style="
+      <div class="library-wrap">
+        <h2 class="title-lg" id="library-title">Thư viện</h2>
+        <div class="download-grid">
+          <article class="download-card download-card--large" style="
                 --download-image: url('../../../public/homepage/library-bg.webp');
-              "
-            >
+              ">
+            <div class="download-card__content">
+              <h3>Chủ đầu tư</h3>
+              <a class="download-link" href="#">Tải về Profile <svg width="54" height="54" viewBox="0 0 54 54"
+                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="27" cy="27" r="22.5" stroke="#9ED8E6" stroke-width="2" />
+                  <path d="M16 27.5L24.2 35L39 19" stroke="#9ED8E6" stroke-width="2.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg></a>
+            </div>
+          </article>
+          <div class="download-stack">
+            <article class="download-card" style="
+                  --download-image: url('../../../public/homepage/library-brochure.webp');
+                ">
               <div class="download-card__content">
-                <h3>Chủ đầu tư</h3>
-                <a class="download-link" href="#">Tải về Profile</a>
+                <h3>Brochure</h3>
+                <a class="download-link" href="#"><svg width="54" height="54" viewBox="0 0 54 54" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="27" cy="27" r="22.5" stroke="#9ED8E6" stroke-width="2" />
+                    <path d="M16 27.5L24.2 35L39 19" stroke="#9ED8E6" stroke-width="2.4" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></a>
               </div>
             </article>
-            <div class="download-stack">
-              <article
-                class="download-card"
-                style="
-                  --download-image: url('../../../public/homepage/library-brochure.webp');
-                "
-              >
-                <div class="download-card__content">
-                  <h3>Brochure</h3>
-                  <a class="download-link" href="#">↘</a>
-                </div>
-              </article>
-              <article
-                class="download-card"
-                style="
+            <article class="download-card" style="
                   --download-image: url('../../../public/homepage/library-flyer.webp');
-                "
-              >
-                <div class="download-card__content">
-                  <h3>Flyer</h3>
-                  <a class="download-link" href="#">↘</a>
-                </div>
-              </article>
-            </div>
+                ">
+              <div class="download-card__content">
+                <h3>Flyer</h3>
+                <a class="download-link" href="#"><svg width="54" height="54" viewBox="0 0 54 54" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="27" cy="27" r="22.5" stroke="#9ED8E6" stroke-width="2" />
+                    <path d="M16 27.5L24.2 35L39 19" stroke="#9ED8E6" stroke-width="2.4" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></a>
+              </div>
+            </article>
           </div>
         </div>
-      </section>
-      <div class="background-2-section deco-footer">
-        <img
-          src="./public/homepage/background-footer.webp"
-          class="deco-footer-img"
-          alt=""
-        />
       </div>
-      <section class="section blue partners" aria-labelledby="partners-title">
-        <!-- <picture>
+    </section>
+    <div class="background-2-section deco-footer">
+      <img src="./public/homepage/background-footer.webp" class="deco-footer-img" alt="" />
+    </div>
+    <section class="section blue partners" aria-labelledby="partners-title">
+      <!-- <picture>
           <source
             media="(max-width: 639px)"
             srcset="./public/homepage/section-13-img-mb.webp"
@@ -1252,220 +1009,197 @@
             decoding="async"
           />
         </picture> -->
-        <img
-          class="section-10-img section-13-img"
-          src="./public/homepage/section-13-img.webp"
-          alt=""
-        />
-        <h2 class="title-lg" id="partners-title">Đối tác</h2>
-        <div class="partner-row">
-          <article class="partner-card">
-            <div class="partner-logo">
-              <img src="./public/homepage/partner-bank.webp" alt="" />
-            </div>
-            <p class="body-sm">
-              Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh
-            </p>
-          </article>
-          <article class="partner-card">
-            <div class="partner-logo">
-              <img src="./public/homepage/partner-mst.webp" alt="" />
-            </div>
-            <p class="body-sm">
-              Tổng thầu EPC, Đơn vị phát triển dự án Công ty Cổ phần Đầu tư MST
-            </p>
-          </article>
-          <article class="partner-card">
-            <div class="partner-logo">
-              <img src="./public/homepage/partner-tinan.webp" alt="" />
-            </div>
-            <p class="body-sm">Tư vấn thiết kế: Công ty Cổ phần TVXD Tín An</p>
-          </article>
-          <article class="partner-card">
-            <div class="partner-logo">
-              <img src="./public/homepage/partner-rwh.webp" alt="" />
-            </div>
-            <p class="body-sm">
-              Tư vấn thiết kế: Công ty TNHH kiến trúc RWH (Nhật Bản)
-            </p>
-          </article>
-          <article class="partner-card">
-            <div class="partner-logo">
-              <img src="./public/homepage/partner-vina2.webp" alt="" />
-            </div>
-            <p class="body-sm">
-              Nhà thầu xây lắp: Công ty Cổ phần Đầu tư và Xây dựng VINA2
-            </p>
-          </article>
-          <article class="partner-card">
-            <div class="partner-logo">
-              <img src="./public/homepage/partner-coninco.webp" alt="" />
-            </div>
-            <p class="body-sm">
-              Tư vấn giám sát: Công ty cổ phần tư vấn công nghệ, thiết bị và
-              kiểm định xây dựng - Coninco
-            </p>
-          </article>
-          <article class="partner-card partner-card-last">
-            <div class="partner-logo"></div>
-            <p class="body-sm">Đơn vị <br />quản lý vận hành</p>
-          </article>
-        </div>
-      </section>
-
-      <footer class="section blue footer">
-        <img
-          class="section-11-img section-footer-img"
-          src="./public/homepage/footer.webp"
-          alt=""
-        />
-        <div class="footer-wrap">
-          <div class="footer-main">
-            <div class="footer-info">
-              <img
-                class="footer-wordmark"
-                src="./public/homepage/footer-wordmark.webp"
-                alt="HERA"
-              />
-              <p><strong>Chủ đầu tư:</strong> CÔNG TY CỔ PHẦN HERA QUY NHƠN</p>
-              <p>
-                <strong>Vị trí dự án:</strong> VPBH tại Quy Nhơn, Quốc lộ 1D
-                tuyến Quy Nhơn - Sông Cầu, Phường Quy Nhơn Nam, Tỉnh Gia Lai,
-                Việt Nam
-              </p>
-              <p>
-                <strong>VPBH tại Hà Nội:</strong> Tầng 3, tòa nhà The Diamond
-                Residence, số 25, đường Lê Văn Lương, phường Thanh Xuân, TP Hà
-                Nội.
-              </p>
-              <p><strong>Hotline CSKH:</strong> 09......</p>
-            </div>
-            <img
-              class="footer-logo"
-              src="./public/homepage/footer-logo.webp"
-              alt="HERA Resort"
-            />
-            <form class="contact-form" action="#" method="post">
-              <div class="form-panel">
-                <label class="field"
-                  ><input name="name" placeholder="Họ và tên"
-                /></label>
-                <label class="field"
-                  ><input name="phone" placeholder="Số điện thoại"
-                /></label>
-                <label class="field"
-                  ><select name="request" aria-label="Chọn yêu cầu">
-                    <option>Chọn yêu cầu</option>
-                  </select></label
-                >
-                <label class="field"
-                  ><input name="email" placeholder="Email"
-                /></label>
-              </div>
-              <button class="submit-button" type="submit">Gửi</button>
-            </form>
+      <img class="section-10-img section-13-img" src="./public/homepage/section-13-img.webp" alt="" />
+      <h2 class="title-lg" id="partners-title">Đối tác</h2>
+      <div class="partner-row">
+        <article class="partner-card">
+          <div class="partner-logo">
+            <img src="./public/homepage/partner-bank.webp" alt="" />
           </div>
-          <div class="legal">
+          <p class="body-sm">
+            Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh
+          </p>
+        </article>
+        <article class="partner-card">
+          <div class="partner-logo">
+            <img src="./public/homepage/partner-mst.webp" alt="" />
+          </div>
+          <p class="body-sm">
+            Tổng thầu EPC, Đơn vị phát triển dự án Công ty Cổ phần Đầu tư MST
+          </p>
+        </article>
+        <article class="partner-card">
+          <div class="partner-logo">
+            <img src="./public/homepage/partner-tinan.webp" alt="" />
+          </div>
+          <p class="body-sm">Tư vấn thiết kế: Công ty Cổ phần TVXD Tín An</p>
+        </article>
+        <article class="partner-card">
+          <div class="partner-logo">
+            <img src="./public/homepage/partner-rwh.webp" alt="" />
+          </div>
+          <p class="body-sm">
+            Tư vấn thiết kế: Công ty TNHH kiến trúc RWH (Nhật Bản)
+          </p>
+        </article>
+        <article class="partner-card">
+          <div class="partner-logo">
+            <img src="./public/homepage/partner-vina2.webp" alt="" />
+          </div>
+          <p class="body-sm">
+            Nhà thầu xây lắp: Công ty Cổ phần Đầu tư và Xây dựng VINA2
+          </p>
+        </article>
+        <article class="partner-card">
+          <div class="partner-logo">
+            <img src="./public/homepage/partner-coninco.webp" alt="" />
+          </div>
+          <p class="body-sm">
+            Tư vấn giám sát: Công ty cổ phần tư vấn công nghệ, thiết bị và
+            kiểm định xây dựng - Coninco
+          </p>
+        </article>
+        <article class="partner-card partner-card-last">
+          <div class="partner-logo"></div>
+          <p class="body-sm">Đơn vị <br />quản lý vận hành</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="section blue footer">
+      <img class="section-11-img section-footer-img" src="./public/homepage/footer.webp" alt="" />
+      <div class="footer-wrap">
+        <div class="footer-main">
+          <div class="footer-info">
+            <img class="footer-wordmark" src="./public/homepage/footer-wordmark.webp" alt="HERA" />
+            <p><strong>Chủ đầu tư:</strong> CÔNG TY CỔ PHẦN HERA QUY NHƠN</p>
             <p>
-              Mọi thông tin trong tài liệu này đúng tại thời điểm phát hành và
-              có thể được điều chỉnh mà không cần thông báo trước. Thông số bản
-              vẽ là tương đối. Thông số chính thức của từng căn sẽ được quy định
-              tại văn bản ký kết giữa Chủ đầu tư và khách hàng. <br />
-              Tài liệu/bản vẽ mang tính chất tham khảo và sẽ được Chủ đầu tư cập
-              nhật, điều chỉnh tại mỗi thời điểm cho từng khu vực để đảm bảo tối
-              ưu các tiện ích sử dụng và phù hợp với thiết kế tổng thể dự án.
+              <strong>Vị trí dự án:</strong> VPBH tại Quy Nhơn, Quốc lộ 1D
+              tuyến Quy Nhơn - Sông Cầu, Phường Quy Nhơn Nam, Tỉnh Gia Lai,
+              Việt Nam
             </p>
+            <p>
+              <strong>VPBH tại Hà Nội:</strong> Tầng 3, tòa nhà The Diamond
+              Residence, số 25, đường Lê Văn Lương, phường Thanh Xuân, TP Hà
+              Nội.
+            </p>
+            <p><strong>Hotline CSKH:</strong> 09......</p>
           </div>
+          <img class="footer-logo" src="./public/homepage/footer-logo.webp" alt="HERA Resort" />
+          <form class="contact-form" action="#" method="post">
+            <div class="form-panel">
+              <label class="field"><input name="name" placeholder="Họ và tên" /></label>
+              <label class="field"><input name="phone" placeholder="Số điện thoại" /></label>
+              <label class="field"><select name="request" aria-label="Chọn yêu cầu">
+                  <option>Chọn yêu cầu</option>
+                </select></label>
+              <label class="field"><input name="email" placeholder="Email" /></label>
+            </div>
+            <button class="submit-button" type="submit">Gửi</button>
+          </form>
         </div>
-      </footer>
-    </main>
+        <div class="legal">
+          <p>
+            Mọi thông tin trong tài liệu này đúng tại thời điểm phát hành và
+            có thể được điều chỉnh mà không cần thông báo trước. Thông số bản
+            vẽ là tương đối. Thông số chính thức của từng căn sẽ được quy định
+            tại văn bản ký kết giữa Chủ đầu tư và khách hàng. <br />
+            Tài liệu/bản vẽ mang tính chất tham khảo và sẽ được Chủ đầu tư cập
+            nhật, điều chỉnh tại mỗi thời điểm cho từng khu vực để đảm bảo tối
+            ưu các tiện ích sử dụng và phù hợp với thiết kế tổng thể dự án.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    <script src="./public/assets/scripts/home.js"></script>
-    <script src="./public/assets/scripts/header.js"></script>
-    <script>
-      window.addEventListener("load", function () {
-        if (!window.Swiper) return;
-        new Swiper(".amenities-swiper", {
-          spaceBetween: 0,
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  <script src="./public/assets/scripts/home.js"></script>
+  <script src="./public/assets/scripts/header.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.Swiper) return;
+      new Swiper(".amenities-swiper", {
+        spaceBetween: 0,
 
-          breakpoints: {
-            0: {
-              slidesPerView: 1.1,
-              // centeredSlides: true,
-            },
-            640: {
-              slidesPerView: 2.5,
-              spaceBetween: 16,
-            },
+        breakpoints: {
+          0: {
+            slidesPerView: 1.1,
+            // centeredSlides: true,
           },
-          loop: false,
-          navigation: { nextEl: ".amenities-next", prevEl: ".amenities-prev" },
-        });
-        const investmentSwiper = new Swiper(".investment-swiper", {
-          spaceBetween: 16,
-          centeredSlides: true,
-          loop: true,
-          speed: 600,
-          autoplay: {
-            delay: 2800,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
+          640: {
+            slidesPerView: 2.5,
+            spaceBetween: 16,
           },
-          slideToClickedSlide: true,
-          breakpoints: {
-            0: {
-              slidesPerView: 1.4,
-            },
-            640: {
-              slidesPerView: 3.8,
-              spaceBetween: 16,
-            },
-          },
-        });
-
-        // Custom pagination: a fixed row of exactly 5 dots (per the Figma),
-        // decoupled from the real slide count. The centred fan loop needs many
-        // slides (15) to fill both sides at all times, but the indicator should
-        // stay a clean 5. 15 is a multiple of 5, so realIndex % 5 advances the
-        // active dot one step per slide and resets seamlessly on each loop.
-        (function buildInvestmentDots() {
-          const dotsEl = document.querySelector(".investment-pagination");
-          if (!dotsEl) return;
-          const DOT_COUNT = 5;
-          dotsEl.innerHTML = "";
-          const dots = Array.from({ length: DOT_COUNT }, (_, i) => {
-            const bullet = document.createElement("span");
-            bullet.className = "swiper-pagination-bullet";
-            bullet.setAttribute("role", "button");
-            bullet.setAttribute("aria-label", "Chuyển tới nhóm " + (i + 1));
-            bullet.addEventListener("click", () =>
-              investmentSwiper.slideToLoop(i)
-            );
-            dotsEl.appendChild(bullet);
-            return bullet;
-          });
-          const sync = () => {
-            const active = investmentSwiper.realIndex % DOT_COUNT;
-            dots.forEach((dot, i) =>
-              dot.classList.toggle(
-                "swiper-pagination-bullet-active",
-                i === active
-              )
-            );
-          };
-          investmentSwiper.on("realIndexChange", sync);
-          sync();
-        })();
-
-        new Swiper(".location-swiper", {
-          slidesPerView: 1,
-          spaceBetween: 24,
-          speed: 500,
-          autoHeight: true,
-          pagination: { el: ".location-pagination", clickable: true },
-        });
+        },
+        loop: false,
+        navigation: { nextEl: ".amenities-next", prevEl: ".amenities-prev" },
       });
-    </script>
-  </body>
+      const investmentSwiper = new Swiper(".investment-swiper", {
+        spaceBetween: 16,
+        centeredSlides: true,
+        loop: true,
+        speed: 600,
+        // autoplay: {
+        //   delay: 2800,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // },
+        slideToClickedSlide: true,
+        breakpoints: {
+          0: {
+            slidesPerView: 1.4,
+          },
+          640: {
+            slidesPerView: 3.8,
+            spaceBetween: 16,
+          },
+        },
+      });
+
+      // Custom pagination: a fixed row of exactly 5 dots (per the Figma),
+      // decoupled from the real slide count. The centred fan loop needs many
+      // slides (15) to fill both sides at all times, but the indicator should
+      // stay a clean 5. 15 is a multiple of 5, so realIndex % 5 advances the
+      // active dot one step per slide and resets seamlessly on each loop.
+      (function buildInvestmentDots() {
+        const dotsEl = document.querySelector(".investment-pagination");
+        if (!dotsEl) return;
+        const DOT_COUNT = 5;
+        dotsEl.innerHTML = "";
+        const dots = Array.from({ length: DOT_COUNT }, (_, i) => {
+          const bullet = document.createElement("span");
+          bullet.className = "swiper-pagination-bullet";
+          bullet.setAttribute("role", "button");
+          bullet.setAttribute("aria-label", "Chuyển tới nhóm " + (i + 1));
+          bullet.addEventListener("click", () =>
+            investmentSwiper.slideToLoop(i)
+          );
+          dotsEl.appendChild(bullet);
+          return bullet;
+        });
+        const sync = () => {
+          const active = investmentSwiper.realIndex % DOT_COUNT;
+          dots.forEach((dot, i) =>
+            dot.classList.toggle(
+              "swiper-pagination-bullet-active",
+              i === active
+            )
+          );
+        };
+        investmentSwiper.on("realIndexChange", sync);
+        sync();
+      })();
+
+      new Swiper(".location-swiper", {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        speed: 500,
+        autoHeight: true,
+        pagination: { el: ".location-pagination", clickable: true },
+      });
+    });
+  </script>
+</body>
+
 </html>
