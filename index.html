@@ -31,18 +31,80 @@
   </head>
   <body>
     <main class="home-page" id="home-page">
-      <header class="site-header" aria-label="Primary">
-        <a href="/">Trang chủ</a>
-        <a href="#experience">Trải nghiệm dự án</a>
-        <a href="#gallery">Sa bàn</a>
-        <img
-          class="site-logo"
-          src="./public/homepage/logo-hera.webp"
-          alt="HERA Resort"
-        />
-        <a href="#investment">Tiềm năng đầu tư</a>
-        <a href="#library">Thư viện</a>
-        <a href="#news">Tin tức</a>
+      <header class="header" aria-label="Primary">
+        <div class="header-mb">
+          <img
+            src="./public/homepage/logo-hera-mb.webp"
+            class="site-logo-mb"
+            alt=""
+          />
+          <button class="button-toggle-sidebar">
+            <svg
+              width="26"
+              height="14"
+              viewBox="0 0 26 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.75 0.75H24.6602"
+                stroke="white"
+                stroke-opacity="0.8"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M0.75 6.73633H24.6602"
+                stroke="white"
+                stroke-opacity="0.8"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M0.75 12.7246H24.6602"
+                stroke="white"
+                stroke-opacity="0.8"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="site-header">
+          <a href="/">Trang chủ</a>
+          <a href="#experience">Trải nghiệm dự án</a>
+          <a href="#gallery">Sa bàn</a>
+          <div class="site-logo">
+            <img src="./public/homepage/logo-hera.webp" alt="HERA Resort" />
+            <button class="btn-close-sidebar">
+              <svg
+                width="18"
+                height="14"
+                viewBox="0 0 18 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.541016 0.541016L12.7331 12.7331"
+                  stroke="white"
+                  stroke-opacity="0.8"
+                  stroke-width="1.08169"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M0.541016 12.7324L12.7331 0.540355"
+                  stroke="white"
+                  stroke-opacity="0.8"
+                  stroke-width="1.08169"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <a href="#investment">Tiềm năng đầu tư</a>
+          <a href="#library">Thư viện</a>
+          <a href="#news">Tin tức</a>
+        </div>
       </header>
       <section class="section hero" aria-labelledby="hero-title">
         <!-- <img
@@ -66,6 +128,14 @@
         <video
           class="hero-video"
           src="./public/assets/videos/hera_pc.webm"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        <video
+          class="hero-video-mb"
+          src="./public/assets/videos/hera_mb.webm"
           autoplay
           muted
           loop
@@ -1018,10 +1088,30 @@
           </div>
         </div>
       </section>
-
-      <section class="section blue partners" aria-labelledby="partners-title">
+      <div class="background-2-section deco-footer">
         <img
-          class="section-10-img"
+          src="./public/homepage/background-footer.webp"
+          class="deco-footer-img"
+          alt=""
+        />
+      </div>
+      <section class="section blue partners" aria-labelledby="partners-title">
+        <!-- <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/section-13-img-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/section-13-img.webp"
+            alt=""
+            class="section-13-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture> -->
+        <img
+          class="section-10-img section-13-img"
           src="./public/homepage/section-13-img.webp"
           alt=""
         />
@@ -1029,7 +1119,7 @@
         <div class="partner-row">
           <article class="partner-card">
             <div class="partner-logo">
-              <img src="./public/homepage/partner-bank.svg" alt="" />
+              <img src="./public/homepage/partner-bank.webp" alt="" />
             </div>
             <p class="body-sm">
               Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh
@@ -1074,18 +1164,16 @@
               kiểm định xây dựng - Coninco
             </p>
           </article>
-          <article class="partner-card">
-            <div class="partner-logo">
-              <img src="./public/homepage/partner-operator.svg" alt="" />
-            </div>
-            <p class="body-sm">Đơn vị<br />quản lý vận hành</p>
+          <article class="partner-card partner-card-last">
+            <div class="partner-logo"></div>
+            <p class="body-sm">Đơn vị <br />quản lý vận hành</p>
           </article>
         </div>
       </section>
 
       <footer class="section blue footer">
         <img
-          class="section-11-img"
+          class="section-11-img section-footer-img"
           src="./public/homepage/footer.webp"
           alt=""
         />
@@ -1140,10 +1228,10 @@
               Mọi thông tin trong tài liệu này đúng tại thời điểm phát hành và
               có thể được điều chỉnh mà không cần thông báo trước. Thông số bản
               vẽ là tương đối. Thông số chính thức của từng căn sẽ được quy định
-              tại văn bản ký kết giữa Chủ đầu tư và khách hàng. Tài liệu/bản vẽ
-              mang tính chất tham khảo và sẽ được Chủ đầu tư cập nhật, điều
-              chỉnh tại mỗi thời điểm cho từng khu vực để đảm bảo tối ưu các
-              tiện ích sử dụng và phù hợp với thiết kế tổng thể dự án.
+              tại văn bản ký kết giữa Chủ đầu tư và khách hàng. <br />
+              Tài liệu/bản vẽ mang tính chất tham khảo và sẽ được Chủ đầu tư cập
+              nhật, điều chỉnh tại mỗi thời điểm cho từng khu vực để đảm bảo tối
+              ưu các tiện ích sử dụng và phù hợp với thiết kế tổng thể dự án.
             </p>
           </div>
         </div>
@@ -1152,6 +1240,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="./public/assets/scripts/home.js"></script>
+    <script src="./public/assets/scripts/header.js"></script>
     <script>
       window.addEventListener("load", function () {
         if (!window.Swiper) return;
