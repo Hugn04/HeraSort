@@ -346,7 +346,7 @@ section {
   display: none;
   position: relative;
   width: 100%;
-  top: 30rem;
+  top: 23rem;
   z-index: 2;
 }
 .hero {
@@ -444,19 +444,7 @@ section {
   height: 42.5625rem;
   z-index: 2;
 }
-.santorini::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 38% 62%,
-    rgba(93, 61, 41, 0.16),
-    rgba(93, 61, 41, 0) 56%
-  );
-}
+
 .santorini-copy {
   position: absolute;
   top: 6.4375rem;
@@ -852,11 +840,13 @@ section {
   gap: 1.1875rem;
 }
 .amenity-label strong {
-  font-family: "DFVN_Rosmerta", "SVN-Butler", serif;
-  font-size: 6.0182rem;
-  line-height: 6.0182rem;
   color: #a1dcf4;
+  font-family: "DFVN Rosmerta";
+  font-size: 6.01819rem;
+  font-style: normal;
   font-weight: 400;
+  line-height: 6.01819rem; /* 100% */
+  letter-spacing: 0.18806rem;
 }
 .amenity-label span {
   font-family: "SVN-Butler", serif;
@@ -954,10 +944,14 @@ section {
 }
 .investment-card__copy strong {
   display: block;
-  font-family: "DFVN_Rosmerta", "SVN-Butler", serif;
-  font-size: 3.4901rem;
-  line-height: 3.4901rem;
+  color: #fff;
+  text-align: center;
+  font-family: "DFVN Rosmerta";
+  font-size: 3.49006rem;
+  font-style: normal;
   font-weight: 400;
+  line-height: 3.49006rem; /* 100% */
+  letter-spacing: 0.10906rem;
   margin-bottom: 0.375rem;
 }
 .investment-card__copy h3 {
@@ -1397,6 +1391,9 @@ section {
   opacity: 0.5;
 }
 @media (max-width: 639.98px) {
+  .gallery-swiper-wrapper {
+    padding: 0 0.625rem;
+  }
   .muithuyen {
     left: 0;
     top: 30.24rem;
@@ -1464,7 +1461,6 @@ section {
     grid-template-columns: 1fr 1fr;
   }
   .header-mb {
-    background: #00000067;
     width: 100%;
     display: flex;
     padding: 0.875rem 1rem;

@@ -177,7 +177,7 @@ function initScrollReveals() {
   //    so the masterplan feels approached by boat and settles there (no zoom
   //    back). Auto-plays (not scroll-linked) so it is visible on the landing
   //    view. Scale both the video and its fallback image; the title stays put.
-  const heroMedia = document.querySelectorAll(".hero-video, .hero .background");
+  const heroMedia = document.querySelectorAll(".hero .background");
   if (heroMedia.length) {
     gsap.fromTo(
       heroMedia,
@@ -382,7 +382,11 @@ function initBirdAnimation() {
 // Reveal a section's headline first, then its body, when it scrolls into view.
 // headlineSelectors / bodySelectors are arrays of selectors resolved *within*
 // the section, so shared classes (e.g. .section-symbol) stay scoped.
-function revealHeadlineThenBody(sectionSelector, headlineSelectors, bodySelectors) {
+function revealHeadlineThenBody(
+  sectionSelector,
+  headlineSelectors,
+  bodySelectors
+) {
   const section = document.querySelector(sectionSelector);
   if (!section) return;
 
@@ -422,9 +426,7 @@ function revealHeadlineThenBody(sectionSelector, headlineSelectors, bodySelector
 // NOTE: swapping to a *different* image set per tab needs per-tab sources to be
 // provided in the markup/data; this wires up the selection + transition.
 function initGalleryFilter() {
-  const tabs = Array.from(
-    document.querySelectorAll(".gallery-filter ul li")
-  );
+  const tabs = Array.from(document.querySelectorAll(".gallery-filter ul li"));
   const viewer = document.querySelector(".gallery-swiper-wrapper");
   if (!tabs.length || !viewer) return;
 
