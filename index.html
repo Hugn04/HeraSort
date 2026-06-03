@@ -168,11 +168,25 @@
           alt=""
         /> -->
         <div class="background-color-layer"></div>
-        <img
+        <!-- <img
           src="./public/homepage/hera-resort.webp"
           alt=""
           class="logo-text"
-        />
+        /> -->
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/hera-resort-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/hera-resort.webp"
+            alt=""
+            class="logo-text"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <!-- <img
           src="./public/homepage/section_21.webp"
           class="background-the-hera"
@@ -181,7 +195,7 @@
         <picture>
           <source
             media="(max-width: 639px)"
-            srcset="./public/homepage/background-the-hera-mb.webp"
+            srcset="./public/homepage/section_21-mb.webp"
           />
 
           <img
@@ -310,11 +324,25 @@
         </div>
       </section>
       <div class="background-2-section">
-        <img
+        <!-- <img
           src="./public/homepage/bg-dao.webp"
           class="background-dao"
           alt=""
-        />
+        /> -->
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/dao-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/bg-dao.webp"
+            alt=""
+            class="background-dao"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <img
           src="./public/homepage/graphic_super.webp"
           class="graphic_super"
@@ -329,7 +357,13 @@
           <h2 class="title-xl">bản giao hưởng<br />huyền thoại</h2>
         </div>
       </section>
-
+      <div class="background-2-section">
+        <img
+          src="./public/homepage/bg-duoi-dao.webp"
+          class="bg-duoi-dao"
+          alt=""
+        />
+      </div>
       <section
         class="section blue amenities"
         id="experience"
@@ -340,7 +374,7 @@
             Tiện ích<br />THE HERA RESORT
           </h2>
           <p class="subtitle muted-blue">
-            Vạn trải nghiệm giữa<br />núi rừng và vịnh biển
+            Vạn trải nghiệm giữa <br />núi rừng và vịnh biển
           </p>
           <div class="arrow-row">
             <button
@@ -389,11 +423,25 @@
         id="investment"
         aria-labelledby="investment-title"
       >
-        <img
+        <!-- <img
           src="./public/homepage/section8.webp"
           alt=""
           class="section-10-img section-8-img"
-        />
+        /> -->
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/bg-duoi-duoi-dao.webp"
+          />
+
+          <img
+            src="./public/homepage/section8.webp"
+            alt=""
+            class="section-10-img section-8-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
 
         <div class="peacock">
           <img
@@ -484,11 +532,25 @@
         id="gallery"
         aria-labelledby="gallery-title"
       >
-        <img
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/bg-abc-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/bg-abc.webp"
+            alt=""
+            class="section-10-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <!-- <img
           class="section-10-img"
           src="./public/homepage/bg-abc.webp"
           alt=""
-        />
+        /> -->
         <div class="gallery-wrap">
           <div class="swiper-gallery-main swiper gallery-main">
             <div class="swiper-wrapper">
@@ -549,11 +611,25 @@
       </section>
 
       <section class="section blue news" id="news" aria-labelledby="news-title">
-        <img
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/bg-section-12-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/bg-section-12.webp"
+            alt=""
+            class="bg-section-12"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <!-- <img
           class="bg-section-12"
           src="./public/homepage/bg-section-12.webp"
           alt=""
-        />
+        /> -->
         <h2 class="title-lg" id="news-title">Tin tức</h2>
         <div class="news-grid">
           <article class="news-card news-card--large">
@@ -603,11 +679,25 @@
         id="library"
         aria-labelledby="library-title"
       >
-        <img
+        <picture>
+          <source
+            media="(max-width: 639px)"
+            srcset="./public/homepage/section-12-img-mb.webp"
+          />
+
+          <img
+            src="./public/homepage/section-12-img.webp"
+            alt=""
+            class="section-12-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <!-- <img
           class="section-12-img"
           src="./public/homepage/section-12-img.webp"
           alt=""
-        />
+        /> -->
         <div class="library-wrap">
           <h2 class="title-lg" id="library-title">Thư viện</h2>
           <div class="download-grid">
@@ -785,18 +875,36 @@
       window.addEventListener("load", function () {
         if (!window.Swiper) return;
         new Swiper(".amenities-swiper", {
-          slidesPerView: "auto",
           spaceBetween: 0,
+
+          breakpoints: {
+            0: {
+              slidesPerView: 1.2,
+              // centeredSlides: true,
+            },
+            640: {
+              slidesPerView: 2.5,
+              spaceBetween: 16,
+            },
+          },
           loop: false,
           navigation: { nextEl: ".amenities-next", prevEl: ".amenities-prev" },
         });
         const investmentSwiper = new Swiper(".investment-swiper", {
-          slidesPerView: "auto",
           spaceBetween: 16,
           centeredSlides: true,
           loop: false,
           speed: 600,
           slideToClickedSlide: true,
+          breakpoints: {
+            0: {
+              slidesPerView: 1.4,
+            },
+            640: {
+              slidesPerView: 3.8,
+              spaceBetween: 16,
+            },
+          },
           observer: true,
           observeParents: true,
 
