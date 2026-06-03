@@ -76,6 +76,25 @@ section {
   width: 100%;
   overflow: hidden;
 }
+
+/* Lenis smooth-scroll (desktop only; class added by JS while active). Lenis
+   drives native scroll, so position:fixed keeps working. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
 .section {
   position: relative;
   width: 100%;
@@ -229,6 +248,7 @@ section {
   width: 100%;
   height: auto;
   object-fit: cover;
+  pointer-events: none;
 }
 .background-tuyet-tac {
   position: absolute;
@@ -949,7 +969,7 @@ section {
   width: 24.44925rem;
   height: 36.51444rem;
   overflow: hidden;
-  box-shadow: 0 0.3654rem 0.8953rem rgba(0, 0, 0, 0.9);
+  box-shadow: 0 5.846px 28.647px 0 #0000008f;
   border-radius: 50% / 35%;
   transition:
     width 0.6s ease,
@@ -984,6 +1004,7 @@ section {
     rgba(0, 0, 0, 0) 46%,
     rgba(0, 0, 0, 0.82)
   );
+  border-radius: 30%;
 }
 .investment-card__copy {
   position: absolute;
@@ -1286,6 +1307,17 @@ section {
   text-decoration: none;
   font-size: 1rem;
   line-height: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.26rem;
+}
+.download-link svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  flex-shrink: 0;
+}
+.download-card__content .download-link {
+  margin-left: auto;
 }
 
 /* ==================================================
@@ -1661,7 +1693,7 @@ section {
   .footer {
     background: #112e50;
     width: 100%;
-    height: 52.06rem;
+    height: 52.5rem;
   }
   .partners {
     height: 40.25rem;
@@ -1735,6 +1767,7 @@ section {
     text-align: center;
     font-size: 1rem;
     line-height: 1.4rem;
+    padding: 0 0.2rem;
   }
   .say-copy p {
     margin: 0;
@@ -1743,7 +1776,7 @@ section {
     margin-top: 0.875rem;
   }
   .say-columns {
-    top: 64.25rem;
+    top: 63.25rem;
     left: 1rem;
     right: 1rem;
     display: block;
@@ -1818,7 +1851,7 @@ section {
     z-index: 2;
   }
   .project-copy {
-    top: 16.5436rem;
+    top: 15.5436rem;
     left: 1rem;
     right: 1rem;
     width: auto;
@@ -1852,11 +1885,13 @@ section {
     font-weight: 400;
     line-height: 1.39194rem; /* 111.355% */
     letter-spacing: -0.0625rem;
+    margin-top: 1rem;
   }
   .project-facts {
     font-size: 0.875rem;
     line-height: 1.225rem;
     background: transparent;
+    padding: 0;
   }
   .project-facts .fact {
     grid-template-columns: 4.9292rem 1fr;
@@ -1907,11 +1942,17 @@ section {
   .location-head span:nth-child(3) {
     display: none;
   }
-  .distance-list {
+  /* Position the whole slider over the map. The list inside must stay in
+     normal flow so each Swiper slide gets a real height — making `.distance-list`
+     itself absolute collapsed every slide to 0, so the swiper showed nothing. */
+  .location-slider {
     position: absolute;
-    top: 50.0862rem;
+    top: 48.0862rem;
     left: 1rem;
     width: 21.3125rem;
+  }
+  .distance-list {
+    width: 100%;
     gap: 1.0625rem;
   }
   .distance-item {
@@ -1925,11 +1966,10 @@ section {
     border-radius: 0;
     justify-self: stretch;
   }
+  /* Pagination flows right under the list (it lives inside .location-slider). */
   .location .dots {
-    position: absolute;
-    top: 68.875rem;
-    left: 0;
-    right: 0;
+    position: static;
+    margin-top: 1.25rem;
   }
 
   /* ==================================================
@@ -2051,6 +2091,9 @@ section {
     height: 24.8871rem;
     margin-top: 0;
     margin-right: 1.125rem;
+  }
+  .investment-card::after {
+    border-radius: 37%;
   }
   .investment-pagination {
     top: 26.5rem; /* just below the shorter mobile card (24.89rem) */
@@ -2198,5 +2241,22 @@ section {
      ================================================== */
   .swiper-button-lock {
     display: none;
+  }
+
+  .legal {
+    color: #6fc5ef;
+    text-align: center;
+    font-family: SVN-Aptima;
+    font-size: 0.625rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.75rem; /* 120% */
+  }
+  .download-link {
+    font-size: 0.875rem;
+  }
+  .location-pulse {
+    right: -15.5rem;
+    top: 5.5rem;
   }
 }
