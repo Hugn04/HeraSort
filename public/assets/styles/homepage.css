@@ -880,6 +880,19 @@ section {
   height: 48.25rem;
   overflow: visible;
 }
+/* Pagination is built manually (fixed 5 dots). The swiper box is much taller
+   than the cards (which are top-aligned), so a static row would fall to the
+   bottom of the box — past the section and behind the next one. Anchor it
+   absolutely just below the centred card instead, above any later section. */
+.investment-pagination {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 37.5rem;
+  width: 100%;
+  margin-top: 0;
+  z-index: 4;
+}
 .investment-card {
   position: relative;
   width: 24.44925rem;
@@ -1958,6 +1971,9 @@ section {
     height: 24.8871rem;
     margin-top: 0;
     margin-right: 1.125rem;
+  }
+  .investment-pagination {
+    top: 25.5rem; /* just below the shorter mobile card (24.89rem) */
   }
 
   /* ==================================================

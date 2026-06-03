@@ -401,12 +401,18 @@ function revealHeadlineThenBody(sectionSelector, headlineSelectors, bodySelector
     tl.from(heads, { y: 40, autoAlpha: 0, duration: 0.9, stagger: 0.14 });
   }
   if (bodies.length) {
-    // Body follows shortly after the headline begins to settle.
-    tl.from(
-      bodies,
-      { y: 28, autoAlpha: 0, duration: 0.8, stagger: 0.12 },
-      "-=0.35"
-    );
+    // Body follows shortly after the headline begins to settle. clearProps
+    // strips the inline transform/opacity GSAP leaves behind once the reveal
+    // finishes, so containers like the Swiper carousel go back to pure
+    // CSS/Swiper control (a leftover transform on the .swiper element can
+    // interfere with the carousel).
+    tl.from(bodies, {
+      y: 28,
+      autoAlpha: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      clearProps: "transform,opacity,visibility",
+    });
   }
 }
 
