@@ -739,6 +739,7 @@ section {
    ================================================== */
 .quote {
   height: 44.625rem;
+  z-index: 5;
 }
 .quote-copy {
   position: absolute;
@@ -766,7 +767,7 @@ section {
   /* Resting spot: over the water/coastline on the right (see reference). */
   /* top: 12rem;
   left: 60rem; */
-  top: -5rem;
+  top: -7rem;
   left: 70rem;
   width: 24rem;
   height: auto;
