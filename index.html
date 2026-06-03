@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Runs during head parse (before first paint) so the hero title can be
+         hidden up-front via CSS, avoiding a flash of the text before GSAP
+         takes over. Gated on a class so the text stays visible if JS is off. -->
+    <script>
+      document.documentElement.classList.add("js-anim");
+    </script>
     <link rel="icon" href="data:," />
     <link
       rel="stylesheet"

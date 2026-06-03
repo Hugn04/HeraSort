@@ -87,6 +87,12 @@ section {
   background-clip: text;
   /* text-shadow: 0 0 0.1875rem rgba(76, 161, 197, 0.5); */
 }
+/* Hide the hero title before GSAP's entrance runs so it never flashes on first
+   load. GSAP reveals it (and the reduced-motion branch shows it immediately).
+   Only applies when JS is active (.js-anim set in <head>). */
+.js-anim #hero-title .gradient-title {
+  visibility: hidden;
+}
 .section-symbol {
   width: 4.0153rem;
   height: 3.2756rem;
