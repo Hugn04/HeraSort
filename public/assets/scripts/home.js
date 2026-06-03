@@ -1,6 +1,7 @@
 window.addEventListener("load", () => {
   const isMobile = window.matchMedia("(max-width: 639px)").matches;
   initGallerySwiper();
+
   if (isMobile) return;
 
   initProjectAnimation();
