@@ -145,14 +145,15 @@
           loop
           playsinline
         ></video>
-        <video
+        <img src="./public/homepage/test.webp" alt="" class="hero-video-mb" />
+        <!-- <video
           class="hero-video-mb"
           src="./public/assets/videos/hera_mb.webm"
           autoplay
           muted
           loop
           playsinline
-        ></video>
+        ></video> -->
         <!-- <video
           class="hero-video"
           src="./public/assets/videos/hera_mb.webm"
@@ -1063,6 +1064,11 @@
           </div>
           <div class="gallery-thumbs">
             <div class="gallery-filter">
+              <img
+                src="./public/homepage/first_thump.webp"
+                class="gallery-filter__background"
+                alt=""
+              />
               <div class="gallery-filter__inner">
                 <div class="gallery-filter__top">
                   <h3>Hình ảnh</h3>
@@ -1186,26 +1192,35 @@
         <div class="library-wrap">
           <h2 class="title-lg" id="library-title">Thư viện</h2>
           <div class="download-grid">
-            <article class="download-card download-card--large">
+            <article
+              class="download-card download-card--large"
+              style="
+                --download-image: url('../../../public/homepage/library-bg.webp');
+              "
+            >
               <div class="download-card__content">
-                <!-- <img
-                  src="./public/homepage/dao-mb.webp"
-                  class="download-card__image"
-                  alt=""
-                /> -->
-                <div class="download-card__overlay"></div>
                 <h3>Chủ đầu tư</h3>
                 <a class="download-link" href="#">Tải về Profile</a>
               </div>
             </article>
             <div class="download-stack">
-              <article class="download-card">
+              <article
+                class="download-card"
+                style="
+                  --download-image: url('../../../public/homepage/library-brochure.webp');
+                "
+              >
                 <div class="download-card__content">
                   <h3>Brochure</h3>
                   <a class="download-link" href="#">↘</a>
                 </div>
               </article>
-              <article class="download-card">
+              <article
+                class="download-card"
+                style="
+                  --download-image: url('../../../public/homepage/library-flyer.webp');
+                "
+              >
                 <div class="download-card__content">
                   <h3>Flyer</h3>
                   <a class="download-link" href="#">↘</a>
