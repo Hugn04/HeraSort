@@ -158,6 +158,12 @@ section {
   height: 0.75rem;
   border-radius: 50%;
   border: 0.0625rem solid #a1dcf4;
+  /* Override Swiper's default filled/translucent bullets to hollow dots. */
+  background: transparent;
+  opacity: 1;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .dots .swiper-pagination-bullet.swiper-pagination-bullet-active {
@@ -220,11 +226,17 @@ section {
   transform: translateX(-50%);
   width: 86.625rem;
   height: 62.0625rem;
+  /* Promote to its own GPU layer so the scroll tilt composites instead of
+     repainting this huge (1664x1192) region every frame (fixes scroll jank). */
+  will-change: transform;
 }
 .peacock img {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  /* Each feather layer gets its own composited layer for the idle shimmer. */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 .peacock-1 {
   z-index: 1;
@@ -355,11 +367,8 @@ section {
   content: "";
   position: absolute;
   inset: -6.4375rem 0 -4.25rem 0;
-  background: linear-gradient(
-      90deg,
-      rgba(19, 53, 90, 0.76),
-      rgba(19, 53, 90, 0.3)
-    ),
+  background:
+    linear-gradient(90deg, rgba(19, 53, 90, 0.76), rgba(19, 53, 90, 0.3)),
     url("./public/homepage/hero-say.webp") center / cover;
   mix-blend-mode: overlay;
   opacity: 0.78;
@@ -543,13 +552,58 @@ section {
   top: 2rem;
   width: 56rem;
   height: 52rem;
-  background: radial-gradient(
-      circle at 55% 44%,
+  background:
+    radial-gradient(
+      circle at 54% 61%,
       rgba(161, 220, 244, 0.24),
       rgba(19, 53, 90, 0) 54%
     ),
     linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
   border-radius: 50%;
+  /* Ambient glow gently breathing under the sonar. GSAP drives these vars on
+     .location (pseudo-elements can't be targeted directly). Origin = the
+     radial-gradient centre (the project marker), so it radiates from there. */
+  transform-origin: 54% 61%;
+  transform: scale(var(--glow-scale, 1));
+  opacity: var(--glow-opacity, 1);
+  will-change: transform, opacity;
+  display: none;
+}
+/* Sonar pulse overlaying the same box as ::after; core + rings sit on the
+   project marker (55% 44%) and are animated by GSAP. */
+.location-pulse {
+  position: absolute;
+  right: -0.8rem;
+  top: 2.5rem;
+  width: 56rem;
+  height: 52rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.location-pulse__core,
+.location-pulse__ring {
+  position: absolute;
+  /* On the "THE HERA RESORT" marker (matches the ::after glow centre). */
+  left: 54%;
+  top: 61%;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+.location-pulse__core {
+  width: 0.625rem;
+  height: 0.625rem;
+  margin: -0.3125rem 0 0 -0.3125rem;
+  background: #e6f6ff;
+  box-shadow:
+    0 0 1.5rem 0.5rem rgba(161, 220, 244, 0.95),
+    0 0 3.5rem 1.25rem rgba(161, 220, 244, 0.4);
+}
+.location-pulse__ring {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -1.25rem 0 0 -1.25rem;
+  border: 0.125rem solid rgba(161, 220, 244, 0.85);
+  opacity: 0;
 }
 .location-copy {
   position: absolute;
@@ -585,14 +639,28 @@ section {
   top: 13.8092rem;
   left: 0;
 }
+.location-slider {
+  /* Wider than the list so the Swiper's overflow:hidden never clips the
+     right-hand stat column. */
+  width: 22rem;
+}
+/* Keep the pagination in normal flow under the list (Swiper would otherwise
+   position it absolutely at the bottom of the slider). */
+.location-pagination.swiper-pagination {
+  position: static;
+  margin-top: 1.25rem;
+}
 .distance-list {
   display: grid;
   gap: 1rem;
-  width: 19.0625rem;
+  /* 14.5625 (label) + 0.5 (dot) + 4.375 (stat) + 2×0.625 (gaps) = 20.6875rem.
+     Sized to the real content so the stat is never squeezed/clipped. */
+  width: 20.6875rem;
 }
 .distance-item {
   display: grid;
-  grid-template-columns: 14.5625rem 1fr 4.375rem;
+  /* Middle column is a small fixed dot (was 1fr, which collapsed to 0). */
+  grid-template-columns: 14.5625rem 0.5rem 4.375rem;
   gap: 0.625rem;
   align-items: center;
 }
@@ -607,7 +675,11 @@ section {
   margin: 0;
 }
 .distance-line {
-  height: 0.0625rem;
+  /* Small dot connector between the label and the stat (matches Figma). */
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  justify-self: center;
   background: #a1dcf4;
   opacity: 0.7;
 }
@@ -650,6 +722,22 @@ section {
 .quote-copy .title-xl {
   margin: 0;
   line-height: 4.25rem;
+}
+/* Seagull gliding into the quote section (animated by GSAP on scroll).
+   Hidden until GSAP takes over so it never flashes at its resting spot. */
+.bird {
+  position: absolute;
+  /* Resting spot: over the water/coastline on the right (see reference). */
+  /* top: 12rem;
+  left: 60rem; */
+  top: -5rem;
+  left: 70rem;
+  width: 24rem;
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
 /* ==================================================
@@ -776,7 +864,10 @@ section {
   overflow: hidden;
   box-shadow: 0 0.3654rem 0.8953rem rgba(0, 0, 0, 0.9);
   border-radius: 50% / 35%;
-  transition: width 0.6s ease, height 0.6s ease, transform 0.6s ease;
+  transition:
+    width 0.6s ease,
+    height 0.6s ease,
+    transform 0.6s ease;
   flex-shrink: 0;
 }
 .investment-card.swiper-slide-active {
@@ -792,8 +883,8 @@ section {
 
 .investment-card.swiper-slide-active + .investment-card + .investment-card,
 .investment-card:has(
-    + .investment-card + .investment-card.swiper-slide-active
-  ) {
+  + .investment-card + .investment-card.swiper-slide-active
+) {
   transform: translateY(-6.375rem) scale(0.744);
   z-index: 1;
 }
@@ -909,9 +1000,19 @@ section {
   font-size: 0.7396rem;
   line-height: 0.7396rem;
 }
+.gallery-filter li {
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
 .gallery-filter li + li {
   margin-top: 0.5rem;
   opacity: 0.6;
+}
+.gallery-filter li.is-active {
+  opacity: 1;
+  color: #a1dcf4;
 }
 .gallery-filter button {
   align-self: stretch;
@@ -1544,6 +1645,13 @@ section {
     grid-template-columns: 14.5rem 1fr 4.375rem;
     text-align: left;
   }
+  /* Mobile keeps the line spanning its (1fr) cell, not the desktop round dot. */
+  .distance-line {
+    width: auto;
+    height: 0.0625rem;
+    border-radius: 0;
+    justify-self: stretch;
+  }
   .location .dots {
     position: absolute;
     top: 68.875rem;
@@ -1571,6 +1679,9 @@ section {
   .quote-copy .title-xl {
     font-size: 2.125rem;
     line-height: 2.2869rem;
+  }
+  .bird {
+    display: none;
   }
 
   /* ==================================================
