@@ -1,6 +1,14 @@
 /* HomePage - HERA Resort
    Cleaned & grouped by sections.
 */
+.muithuyen {
+  position: absolute;
+  z-index: 2;
+  top: 45.1rem;
+  left: 15.46rem;
+  width: 71.48244rem;
+  height: 17.75175rem;
+}
 
 .header {
   width: 100%;
@@ -187,6 +195,7 @@ section {
   z-index: 1;
 }
 .background-color-layer {
+  display: none;
   position: absolute;
   top: -12rem;
   width: 100%;
@@ -219,7 +228,7 @@ section {
   top: 3rem;
 }
 .background-dao {
-  top: -20rem;
+  top: -22.4rem;
 }
 .peacock {
   position: absolute;
@@ -373,11 +382,10 @@ section {
   position: absolute;
   inset: -6.4375rem 0 -4.25rem 0;
   background: linear-gradient(
-      90deg,
-      rgba(19, 53, 90, 0.76),
-      rgba(19, 53, 90, 0.3)
-    ),
-    url("./public/homepage/hero-say.webp") center / cover;
+    90deg,
+    rgba(19, 53, 90, 0.76),
+    rgba(19, 53, 90, 0.3)
+  );
   mix-blend-mode: overlay;
   opacity: 0.78;
 }
@@ -570,7 +578,7 @@ section {
 }
 .location-copy {
   position: absolute;
-  top: 0.375rem;
+  top: -1.625rem;
   left: 12.5rem;
   width: 31.5625rem;
   z-index: 1;
@@ -663,7 +671,9 @@ section {
   font-size: 1.5rem;
   line-height: 1.8rem;
 }
-
+.background-2-section__dao {
+  z-index: 3;
+}
 .quote-copy .title-xl {
   margin: 0;
   line-height: 4.25rem;
@@ -674,6 +684,7 @@ section {
    ================================================== */
 .amenities {
   height: 34.75rem;
+  z-index: 3;
 }
 .amenities-copy {
   position: absolute;
@@ -892,14 +903,22 @@ section {
   background: #095564;
   flex-shrink: 0;
 }
-.gallery-filter::before {
-  content: "";
+/* .download-card__image {
   position: absolute;
-  inset: 0;
-  background: url("./public/homepage/gallery-thumb-1.webp") center / cover;
-  opacity: 0.36;
-  mix-blend-mode: overlay;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
+.download-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  background: linear-gradient(0deg, #095564 0%, #095564 100%), #d9d9d9;
+} */
 .gallery-filter__inner {
   position: relative;
   height: 100%;
@@ -1254,6 +1273,13 @@ section {
   opacity: 0.5;
 }
 @media (max-width: 639.98px) {
+  .muithuyen {
+    left: 0;
+    top: 30.24rem;
+    width: 58.38956rem;
+    height: 7.51856rem;
+    object-fit: cover;
+  }
   .gallery-navigation-wrapper {
     display: none;
   }
@@ -1438,6 +1464,7 @@ section {
     width: 100%;
     height: 21.25375rem !important;
     top: -15rem;
+    display: block;
   }
   .background-tuyet-tac {
     top: 0;
@@ -1730,6 +1757,7 @@ section {
      ================================================== */
   .quote {
     height: 34.8125rem;
+    z-index: 3;
   }
   .quote-copy {
     top: 4.1818rem;
